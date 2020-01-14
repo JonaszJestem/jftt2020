@@ -1,0 +1,12 @@
+DECLARE
+	t(-5:5), a, b, d, c
+BEGIN
+    c ASSIGN 0;
+    a ASSIGN 2;
+    b ASSIGN 3;
+    t(c) ASSIGN a TIMES b;
+    WRITE t(c);
+    t(c) ASSIGN b TIMES b;
+    WRITE t(c);
+END
+

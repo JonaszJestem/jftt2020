@@ -70,7 +70,7 @@ class ForLoop:
         loop_end = ForLoopJumpFiller(program.line_no, iterator=self.i)
 
         # generate condition
-        condition = ConditionOperations("<=", Identifier(self.i), Identifier(self.i + '_end0'))
+        condition = ConditionOperations("LEQ", Identifier(self.i), Identifier(self.i + '_end0'))
         line_to_fill = condition.generate_code(program)
 
         # add command end to fill jumps in condition
@@ -117,7 +117,7 @@ class ForDownToLoop(ForLoop):
         loop_end = ForDownToLoopJumpFiller(program.line_no, iterator=self.i)
 
         # generate condition
-        condition = ConditionOperations(">=",
+        condition = ConditionOperations("GEQ",
                                         Identifier(self.i),
                                         Identifier(self.i + '_end0'))
         line_to_fill = condition.generate_code(program)

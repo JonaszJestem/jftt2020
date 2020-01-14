@@ -1,0 +1,29 @@
+DECLARE
+    a; b; c; d; e; f; g; h;
+IN
+    a  ASSIGN  1;
+    b  ASSIGN  1;
+    c ASSIGN  1;
+    d ASSIGN  1;
+    e ASSIGN  1;
+    f ASSIGN  1;
+    g ASSIGN  1;
+    h ASSIGN  1;
+    FOR i FROM 0 TO a DO
+        FOR j FROM 0 TO b DO
+            FOR k FROM 0 TO c DO
+                FOR l FROM 0 TO d DO
+                    FOR m FROM 0 TO e DO
+                        FOR n FROM 0 TO f DO
+                            FOR o FROM 0 TO g DO
+                                FOR p FROM 0 TO h DO
+                                    WRITE 1;
+                                ENDFOR
+                            ENDFOR
+                        ENDFOR
+                    ENDFOR
+                ENDFOR
+            ENDFOR
+        ENDFOR
+    ENDFOR
+END

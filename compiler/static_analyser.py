@@ -64,7 +64,7 @@ class StaticAnalyser:
 
     def _split_tokens(self):
         token_number = 0
-        while self.tokens[token_number].type != 'IN':
+        while self.tokens[token_number].type != 'BEGIN':
             token_number += 1
         declarations_queue = self.tokens[1:token_number]
         commands_queue = self.tokens[token_number + 1:-1]

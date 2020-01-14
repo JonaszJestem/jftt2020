@@ -1,0 +1,12 @@
+DECLARE
+c
+BEGIN
+
+FOR i FROM 1 TO 3 DO
+    c  ASSIGN  i MINUS 1;
+    FOR j FROM 4 DOWNTO c DO
+        WRITE j;
+    ENDFOR
+ENDFOR
+
+END

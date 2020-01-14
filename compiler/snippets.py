@@ -1,37 +1,12 @@
 import logging
 
-from .variables import Variable
+from .variables import Variable, copy_value
 
 
 def less_or_equal(variable_x, variable_y, program, swap=False):
-    x, y = variable_x.register, variable_y.register
+    x, y = variable_x.cell, variable_y.cell
 
     logging.info('Less or equal generating code')
-    label_false = "<replace_here>"
-    line_to_fill = program.line_no + 3
-    if swap:
-        x, y = y, x
-
-    # NOTE x and y should become busy but here we
-    # don't ask for registers so they are safe
-
-    out_code = [
-        f'COPY A {x} #condition begining ',
-        f'SUB A {y}',
-        f'JZERO A {program.line_no + 4}',
-        f'JUMP {label_false} #condtion end'
-    ]
-
-    [program.code.append(command) for command in out_code]
-    program.line_no += len(out_code)
-
-    return [line_to_fill]
-
-
-def greater_than(variable_x, variable_y, program, swap=False):
-    x, y = variable_x.register, variable_y.register
-
-    logging.info('Greater than generating code')
     label_false = "<replace_here>"
     line_to_fill = program.line_no + 4
     if swap:
@@ -41,11 +16,33 @@ def greater_than(variable_x, variable_y, program, swap=False):
     # don't ask for registers so they are safe
 
     out_code = [
-        f'COPY A {y} #condition begining ',
-        f'INC A',
-        f'SUB A {x}',
-        f'JZERO A {program.line_no + 5}',
-        f'JUMP {label_false} #condtion end'
+        f'LOAD {x} #condition begining ',
+        f'SUB {y}',
+        f'JNEG {program.line_no + 5}',
+        f'JZERO {program.line_no + 5}',
+        f'JUMP {label_false} #condtion end',
+    ]
+
+    [program.code.append(command) for command in out_code]
+    program.line_no += len(out_code)
+
+    return [line_to_fill]
+
+
+def greater_than(variable_x, variable_y, program, swap=False):
+    x_cell, y_cell = variable_x.cell, variable_y.cell
+
+    logging.info('Greater than generating code')
+    label_false = "<replace_here>"
+    line_to_fill = program.line_no + 3
+    if swap:
+        x_cell, y_cell = y_cell, x_cell
+
+    out_code = [
+        f'LOAD {y_cell} #condition begining ',
+        f'SUB {x_cell}',
+        f'JNEG {program.line_no + 5}',
+        f'JUMP {label_false} #condtion end',
     ]
 
     [program.code.append(command) for command in out_code]
@@ -57,7 +54,7 @@ def greater_than(variable_x, variable_y, program, swap=False):
 def equals(variable_x, variable_y, program, negate=False):
     logging.info('Equals generating code')
 
-    x, y = variable_x.register, variable_y.register
+    x, y = variable_x.cell, variable_y.cell
 
     label_false = "<replace_here>"
     label_true = program.line_no + 8
@@ -69,13 +66,13 @@ def equals(variable_x, variable_y, program, negate=False):
         lines_to_fill = [program.line_no + 3, program.line_no + 7]
 
     out_code = [
-        f'COPY A {y} # equals',
-        f'SUB A {x}',
-        f'JZERO A {program.line_no + 4}',
+        f'LOAD {y} # equals',
+        f'SUB {x}',
+        f'JZERO {program.line_no + 4}',
         f'JUMP {label_false}',
-        f'COPY A {x}',
-        f'SUB A {y}',
-        f'JZERO A {label_true} # end for not equals',
+        f'LOAD {x}',
+        f'SUB {y}',
+        f'JZERO {label_true} # end for not equals',
         f'JUMP {label_false} # end equals',
     ]
 
@@ -90,122 +87,154 @@ def equals(variable_x, variable_y, program, negate=False):
 
 
 def add(variable_x, variable_y, program):
-    x = variable_x.register
-    y = variable_y.register
+    x = variable_x.cell
+    y = variable_y.cell
 
-    # optimazition purposes but didnt want to swap xD
-
+    program.code[-1] += "# started adding"
+    copy_value(program, from_cell=x, to_cell=0)
     out_code = [
-        f'ADD {x} {y}'
+        f'ADD {y}',
     ]
 
     [program.code.append(command) for command in out_code]
+    copy_value(program, from_cell=0, to_cell=9)
     program.line_no += len(out_code)
-    return Variable('helper', 'G', -1)
+    return Variable('helper', 9, -1)
 
 
 def sub(variable_x, variable_y, program):
-    x = variable_x.register
-    y = variable_y.register
+    x = variable_x.cell
+    y = variable_y.cell
 
-    # optimazition purposes but didnt want to swap xD
-
+    program.code[-1] += "# started substracting"
+    copy_value(program, from_cell=x, to_cell=0)
     out_code = [
-        f'SUB {x} {y}',
+        f'SUB {y}',
     ]
+
     [program.code.append(command) for command in out_code]
+    copy_value(program, from_cell=0, to_cell=9)
     program.line_no += len(out_code)
 
-    return Variable('helper', 'G', -1)
+    return Variable('helper', 9, -1)
 
 
 def multiply(variable_x, variable_y, program):
-    x = variable_x.register
-    y = variable_y.register
-    result_register = 'D'
-    tmp_register = 'E'
+    x = variable_x.cell
+    y = variable_y.cell
+    result = 9
+
     out_code = [
-        f'COPY A {y} #checking which is bigger',
-        f'SUB A {x}',
-        f'JZERO A {program.line_no + 13}',
-        f'COPY A {y} #multiplying if x is smaller',
-        f'COPY {tmp_register} {x}',
-        f'SUB {result_register} {result_register}',
-        f'JZERO {tmp_register} {program.line_no + 23}',
-        f'JODD {tmp_register} {program.line_no + 9}',
-        f'JUMP {program.line_no + 10}',
-        f'ADD {result_register} A',
-        f'ADD A A',
-        f'HALF {tmp_register}',
-        f'JUMP {program.line_no + 6} # multiplying if x end',
-        f'COPY A {x} #multiplying if y is smaller',
-        f'COPY {tmp_register} {y}',
-        f'SUB {result_register} {result_register}',
-        f'JZERO {tmp_register} {program.line_no + 23}',
-        f'JODD {tmp_register} {program.line_no + 19}',
-        f'JUMP {program.line_no + 20}',
-        f'ADD {result_register} A',
-        f'ADD A A',
-        f'HALF {tmp_register}',
-        f'JUMP {program.line_no + 16} #multiplying if y end'
+        f'LOAD {y}',
+        f'JZERO {program.line_no + 8}', # jump to end
+        f'DEC',
+        f'STORE {y}',
+        f'LOAD {result}',
+        f'ADD {x}',
+        f'STORE {result}',
+        f'JUMP {program.line_no}',
     ]
 
     [program.code.append(command) for command in out_code]
     program.line_no += len(out_code)
-    return Variable('helper', 'D', -1)
+
+    return Variable('helper', result, -1)
 
 
 def divide(variable_x, variable_y, program, modulo=False):
-    x = variable_x.register
-    y = variable_y.register
+    x = variable_x.cell
+    y = variable_y.cell
     # results
-    quotient = 'C'
-    remainder = 'A'
+    iloraz = 3
+    reszta = 4
 
-    # temporary registers
-    helper_d = 'D'
-    helper_e = 'E'
+    sign_helper = 7
 
-    if modulo:
-        quotient, remainder = remainder, quotient
+    if x == y:
+        x = 5
+        copy_value_code(program, from_cell=6, to_cell=5)
+
+    clear = ['SUB 0', 'STORE 3', 'STORE 4', 'STORE 7', 'STORE 8']
+    [program.code.append(command) for command in clear]
+    program.line_no += 5
 
     out_code = [
-        f'COPY {remainder} {x} #division',
-        f'JZERO {y} {program.line_no + 24} #zero_divison',
-        f'COPY {helper_d} {y}',
-        f'COPY {quotient} {helper_d}',
-        f'SUB {quotient} {remainder}',
-        f'JZERO {quotient} {program.line_no + 7}',
-        f'JUMP {program.line_no + 9}',
-        f'ADD {helper_d} {helper_d}',
-        f'JUMP {program.line_no + 3}',
-        f'SUB {quotient} {quotient}',
-        f'COPY {helper_e} {helper_d}',
-        f'SUB {helper_e} {remainder}',
-        f'JZERO {helper_e} {program.line_no + 16}',
-        f'ADD {quotient} {quotient}',
-        f'HALF {helper_d}',
-        f'JUMP {program.line_no + 20}',
-        f'ADD {quotient} {quotient}',
-        f'INC {quotient}',
-        f'SUB {remainder} {helper_d}',
-        f'HALF {helper_d}',
-        f'COPY {helper_e} {y}',
-        f'SUB {helper_e} {helper_d}',
-        f'JZERO {helper_e} {program.line_no + 10}',
-        f'JUMP {program.line_no + 26}',
-        f'SUB {remainder} {remainder}',
-        f'SUB {quotient} {quotient} #division end',
-    ]
+        f'LOAD {y}',
+        f'JZERO {program.line_no + 60} # dzielenie przez 0',
+        f'LOAD {x}',
+        f'JPOS {program.line_no + 7}',
+        f'LOAD {sign_helper}',
+        f'INC',
+        f'STORE {sign_helper}',
+        f'LOAD {y}',
+        f'JPOS {program.line_no + 12}',
+        f'LOAD {sign_helper}',
+        f'INC',
+        f'STORE {sign_helper}',
+        f'LOAD {sign_helper}',
+        f'DEC', #13
+        f'JZERO {program.line_no + 35} #jump to handling mixed',
 
+        f'LOAD {x}',
+        f'JPOS {program.line_no + 26}', # do poczatekdzielenia
+        f'LOAD {iloraz}',
+        f'INC',
+        f'STORE {iloraz}',
+        f'LOAD {x}', # poczatek dzielenia 26
+        f'SUB {y}',
+        f'STORE {x}',
+        f'STORE {reszta}',
+        f'JPOS {program.line_no + 60} # jump to end',
+        f'JUMP {program.line_no + 17} #koniec dzeielenia', #do poczatek dzielenia
+        
+        f'LOAD {x}', # poczatek dzielenia 26
+        f'STORE {reszta}',
+        f'SUB {y}',
+        f'STORE {x}',
+        f'JNEG {program.line_no + 60} # jump to end',
+        f'LOAD {iloraz}',
+        f'INC',
+        f'STORE {iloraz}',
+        f'JUMP {program.line_no + 26} #koniec dzeielenia', #do poczatek dzielenia
+
+        # mixed
+        f'LOAD {x}', # 35
+        f'JNEG {program.line_no + 46}', # 36 do poczatekdzielenia
+        f'LOAD {x}',  # 37
+        f'STORE {reszta}',
+        f'ADD {y}',
+        f'STORE {x}',
+        f'JNEG {program.line_no + 60} # jump to end',
+        f'LOAD {iloraz}',
+        f'DEC',
+        f'STORE {iloraz}',
+        f'JUMP {program.line_no + 37} # koniec dzeielenia',  # 45 do poczatek dzielenia
+
+        f'LOAD {x}', # 46 poczatek dzielenia
+        f'STORE {reszta}',
+        f'ADD {y}',
+        f'STORE {x}',
+        f'JPOS {program.line_no + 55} # jump to end',
+        f'LOAD {iloraz}',
+        f'DEC',
+        f'STORE {iloraz}',
+        f'JUMP {program.line_no + 46} #54 koniec dzeielenia', #do poczatek dzielenia
+        f'LOAD {iloraz}',
+        f'DEC',
+        f'STORE {iloraz}',
+        f'LOAD {x}',
+        f'STORE {reszta}', #59
+    ]
     [program.code.append(command) for command in out_code]
+    # [print(f'{i}: {program.code[i]}') for i in range(len(program.code))]
     program.line_no += len(out_code)
+    # print(program.line_no)
 
     # return proper result based on modulo flag
     if modulo:
-        return Variable('helper', remainder, -1)
+        return Variable('helper', reszta, -1)
     else:
-        return Variable('helper', quotient, -1)
+        return Variable('helper', iloraz, -1)
 
 
 def decrement(variable_x, variable_y, program):
@@ -218,19 +247,8 @@ def decrement(variable_x, variable_y, program):
 
 
 def increment(variable_x, variable_y, program):
-    x = variable_x.register
+    x = variable_x.cell
     out_code = [f'INC {x}' for _ in range(variable_y)]
-    [program.code.append(command) for command in out_code]
-    program.line_no += len(out_code)
-    return Variable('helper', 'G', -1)
-
-
-def halfing(variable_x, variable_y, program, ):
-    x = variable_x.register
-    out_code = []
-    while variable_y != 1:
-        out_code.append(f'HALF {x}')
-        variable_y //= 2
     [program.code.append(command) for command in out_code]
     program.line_no += len(out_code)
     return Variable('helper', 'G', -1)
@@ -245,3 +263,13 @@ def bin_pow(variable_x, variable_y, program, ):
     [program.code.append(command) for command in out_code]
     program.line_no += len(out_code)
     return Variable('helper', 'G', -1)
+
+
+def copy_value_code(program, from_cell, to_cell=0):
+    if from_cell != 0:
+        program.code.append(f'SUB 0')
+        program.code.append(f'ADD {from_cell}')
+        program.line_no += 2
+    if to_cell != 0:
+        program.code.append(f'STORE {to_cell} # copied from {from_cell} to {to_cell}')
+        program.line_no += 1

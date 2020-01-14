@@ -1,4 +1,4 @@
-class VariableUse:
+class VariableTrace:
     def __init__(self, name, is_array=0, start_index=0, end_index=0):
         self.name = name
         self.assignments = 0

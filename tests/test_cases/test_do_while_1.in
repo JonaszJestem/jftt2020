@@ -1,0 +1,17 @@
+DECLARE
+b; c;
+IN
+b  ASSIGN  10;
+c  ASSIGN  9;
+DO
+    WRITE c;
+    DO
+        c  ASSIGN  c - 1;
+        WRITE c;
+    WHILE c != 0
+    ENDDO
+    c  ASSIGN  c - 1;
+    WRITE c;
+WHILE c != 0
+ENDDO
+END

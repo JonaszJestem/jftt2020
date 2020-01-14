@@ -1,20 +1,18 @@
 import re
 
-from .conditionals import JumpFiller, ElseJumpFiller, IfThenConditional, IfThenElseConditional
-from .exceptions import SyntaxError, ArrayWrongDeclaration, ArrrayOutOfBound, DoubledDeclarationVariable, \
-    IteratorManipulation, StatusDoesNotExist, UndeclaredVariable, VariableNotInitialized
-from .io_operations import Number, Read, Write
-from .loops import Number, JumpFiller, Value, Pidentifier, Identifier, LoopJumpFiller, ForLoopJumpFiller, \
-    ForDownToLoopJumpFiller, ConditionOperations, AssignmentOperations, DoWhileLoop, ForDownToLoop, ForLoop, WhileLoop
-from .variables import Variable, ArrayVariable, Value, Number
-
-from .identifiers import Identifier, Pidentifier, ArrayIdentifier, Variable
-from .jump_fillers import JumpFiller, ForDownToLoopJumpFiller, ForLoopJumpFiller, LoopJumpFiller
-from .analysis_help import VariableUse
-from .operations import AssignmentOperations, ConditionOperations, Number
-from .lexer import JFTTLexer
-from .program import JFTTProgram
 from sly import Parser
+
+from .analysis_help import VariableTrace
+from .conditionals import IfThenConditional, IfThenElseConditional
+from .exceptions import SyntaxError, ArrayWrongDeclaration, ArrrayOutOfBound, DoubledDeclarationVariable, \
+    IteratorManipulation, UndeclaredVariable, VariableNotInitialized
+from .identifiers import Identifier, ArrayIdentifier, Variable
+from .io_operations import Read, Write
+from .lexer import JFTTLexer
+from .loops import DoWhileLoop, ForDownToLoop, ForLoop, WhileLoop
+from .operations import AssignmentOperations, ConditionOperations, Number, ArithemticOperations
+from .program import JFTTProgram
+from .variables import ArrayVariable, Value
 
 
 class JFTTParser(Parser):
@@ -30,43 +28,77 @@ class JFTTParser(Parser):
     def __init__(self, analysis=True):
         self.variables = {}
         self.arrays = {}
-        self.used_memory = 0
+        self.used_memory = 10
         self.analysis = analysis
-        self.variables_use = {}
+        self.variables_tracker = {}
         self.ignored_variables = []
         self.iterators = []
 
-    @_('DECLARE declarations IN commands END')
+    @_('DECLARE declarations BEGIN commands END')
     def program(self, p):
         return JFTTProgram(p.declarations, p.commands, self.variables, self.arrays, self.used_memory)
 
-    @_('declarations PIDENTIFIER SEMICOLON')
+    @_('declarations PIDENTIFIER')
     def declarations(self, p):
-        if self.analysis or p.PIDENTIFIER not in self.ignored_variables:
-            self.variables[p.PIDENTIFIER] = Variable(p.PIDENTIFIER, None, self.used_memory)
+        variable_name = p.PIDENTIFIER
+        if self.analysis or variable_name not in self.ignored_variables:
+            self.variables[variable_name] = Variable(variable_name, None, self.used_memory)
             self.used_memory += 1
-            if self.variables_use.get(p.PIDENTIFIER) is None:
-                variable_use = VariableUse(p.PIDENTIFIER)
-                self.variables_use[p.PIDENTIFIER] = variable_use
+            if self.variables_tracker.get(variable_name) is None:
+                variable_trace = VariableTrace(variable_name)
+                self.variables_tracker[variable_name] = variable_trace
             elif self.analysis:
-                raise DoubledDeclarationVariable(p.PIDENTIFIER, p.lineno)
+                raise DoubledDeclarationVariable(variable_name, p.lineno)
         return None
 
-    @_('declarations PIDENTIFIER LPARENTHESIS NUMBER COLON NUMBER RPARENTHESIS SEMICOLON')
+    @_('declarations COMMA PIDENTIFIER')
+    def declarations(self, p):
+        variable_name = p.PIDENTIFIER
+        if self.analysis or variable_name not in self.ignored_variables:
+            self.variables[variable_name] = Variable(variable_name, None, self.used_memory)
+            self.used_memory += 1
+            if self.variables_tracker.get(variable_name) is None:
+                variable_trace = VariableTrace(variable_name)
+                self.variables_tracker[variable_name] = variable_trace
+            elif self.analysis:
+                raise DoubledDeclarationVariable(variable_name, p.lineno)
+        return None
+
+    @_('declarations PIDENTIFIER LPARENTHESIS NUMBER COLON NUMBER RPARENTHESIS')
     def declarations(self, p):
         if self.analysis or p.PIDENTIFIER not in self.ignored_variables:
             start_array = int(p.NUMBER0)
             end_array = int(p.NUMBER1)
             self.arrays[p.PIDENTIFIER] = ArrayVariable(p.PIDENTIFIER, start_array, end_array, self.used_memory)
-            self.used_memory += end_array + 1
+            self.used_memory += abs(end_array) + abs(start_array) + 1
 
             if start_array > end_array:
                 raise ArrayWrongDeclaration(p.PIDENTIFIER, p.lineno)
 
             array_name = p.PIDENTIFIER + p.LPARENTHESIS + str(p.NUMBER0) + p.COLON + str(p.NUMBER1) + p.RPARENTHESIS
-            if self.variables_use.get(p.PIDENTIFIER) is None:
-                variable_use = VariableUse(array_name, is_array=1, start_index=p.NUMBER0, end_index=p.NUMBER1)
-                self.variables_use[p.PIDENTIFIER] = variable_use
+            if self.variables_tracker.get(p.PIDENTIFIER) is None:
+                variable_use = VariableTrace(array_name, is_array=1, start_index=p.NUMBER0, end_index=p.NUMBER1)
+                self.variables_tracker[p.PIDENTIFIER] = variable_use
+            elif self.analysis:
+                raise DoubledDeclarationVariable(p.PIDENTIFIER, p.lineno)
+
+        return None
+
+    @_('declarations COMMA PIDENTIFIER LPARENTHESIS NUMBER COLON NUMBER RPARENTHESIS')
+    def declarations(self, p):
+        if self.analysis or p.PIDENTIFIER not in self.ignored_variables:
+            start_array = int(p.NUMBER0)
+            end_array = int(p.NUMBER1)
+            self.arrays[p.PIDENTIFIER] = ArrayVariable(p.PIDENTIFIER, start_array, end_array, self.used_memory)
+            self.used_memory += abs(end_array) + abs(start_array) + 1
+
+            if start_array > end_array:
+                raise ArrayWrongDeclaration(p.PIDENTIFIER, p.lineno)
+
+            array_name = p.PIDENTIFIER + p.LPARENTHESIS + str(p.NUMBER0) + p.COLON + str(p.NUMBER1) + p.RPARENTHESIS
+            if self.variables_tracker.get(p.PIDENTIFIER) is None:
+                variable_use = VariableTrace(array_name, is_array=1, start_index=p.NUMBER0, end_index=p.NUMBER1)
+                self.variables_tracker[p.PIDENTIFIER] = variable_use
             elif self.analysis:
                 raise DoubledDeclarationVariable(p.PIDENTIFIER, p.lineno)
 
@@ -189,16 +221,16 @@ class JFTTParser(Parser):
     @_('PIDENTIFIER')
     def identifier(self, p):
         if not self.analysis:
-            if p.PIDENTIFIER not in self.iterators and p.PIDENTIFIER not in list(self.variables_use.keys()):
+            if p.PIDENTIFIER not in self.iterators and p.PIDENTIFIER not in list(self.variables_tracker.keys()):
                 raise UndeclaredVariable(p.PIDENTIFIER, p.lineno)
         return Identifier(p.PIDENTIFIER)
 
     @_('PIDENTIFIER LPARENTHESIS PIDENTIFIER RPARENTHESIS')
     def identifier(self, p):
         if not self.analysis and p.PIDENTIFIER1 not in self.iterators and p.PIDENTIFIER1 not in list(
-                self.variables_use.keys()):
+                self.variables_tracker.keys()):
             raise UndeclaredVariable(p.PIDENTIFIER1, p.lineno)
-        variable = self.variables_use.get(p.PIDENTIFIER1)
+        variable = self.variables_tracker.get(p.PIDENTIFIER1)
         if variable is not None and variable.assignments == 0:
             raise VariableNotInitialized(variable.name, p.lineno)
         return ArrayIdentifier(p.PIDENTIFIER0, p.PIDENTIFIER1)
@@ -206,10 +238,10 @@ class JFTTParser(Parser):
     @_('PIDENTIFIER LPARENTHESIS NUMBER RPARENTHESIS')
     def identifier(self, p):
         if not self.analysis and p.PIDENTIFIER not in self.iterators and p.PIDENTIFIER not in list(
-                self.variables_use.keys()):
+                self.variables_tracker.keys()):
             raise UndeclaredVariable(p.PIDENTIFIER, p.lineno)
-        variable = self.variables_use.get(p.PIDENTIFIER)
-        start_index, end_index = re.findall(r'[\d]+', variable.name)
+        variable = self.variables_tracker.get(p.PIDENTIFIER)
+        start_index, end_index = re.findall(r'-?[\d]+', variable.name)
         if variable is not None and (p.NUMBER < int(start_index) or p.NUMBER > int(end_index)):
             raise ArrrayOutOfBound(p.lineno)
         return ArrayIdentifier(p.PIDENTIFIER, p.NUMBER)
@@ -221,13 +253,13 @@ class JFTTParser(Parser):
         elif type(p.value) is ArrayIdentifier:
             index = p.value.index
             variable_name = p.value.identifier
-            variable_index = self.variables_use.get(index)
+            variable_index = self.variables_tracker.get(index)
             if variable_index is not None:
                 if variable_index.assignments == 0:
                     raise VariableNotInitialized(variable_index.name, line_no)
                 variable_index.uses += 1
 
-        variable = self.variables_use.get(variable_name)
+        variable = self.variables_tracker.get(variable_name)
         if variable is not None:
             if variable.assignments == 0:
                 raise VariableNotInitialized(variable.name, line_no)
@@ -240,7 +272,7 @@ class JFTTParser(Parser):
         elif hasattr(p.value, 'identifier'):
             variable_name = p.value.identifier
 
-        variable = self.variables_use.get(variable_name)
+        variable = self.variables_tracker.get(variable_name)
         if variable is not None:
             variable.assignments += 1
 

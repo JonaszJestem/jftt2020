@@ -1,0 +1,45 @@
+DECLARE
+a; b; c; d; e; f; g; h; k; l; z; x; pa; pb; pc; pd; pf;
+IN
+a ASSIGN 1;
+b ASSIGN 2;
+d ASSIGN 4;
+e ASSIGN 5;
+f ASSIGN 6;
+g ASSIGN 8;
+h ASSIGN 10;
+k ASSIGN 32;
+l ASSIGN 11;
+z ASSIGN 11;
+x ASSIGN 11;
+pa  ASSIGN  0;
+pb  ASSIGN  2;
+pc  ASSIGN  3;
+pd  ASSIGN  4;
+
+FOR i FROM 0 TO 0 DO
+    c  ASSIGN  e - h;   [ # 0]
+    h  ASSIGN  i DIV a; [# 1]
+    a  ASSIGN  z  TIMES   k;[ # 352]
+    WRITE z; [11]
+    WRITE k; [32]
+    WRITE a; [352]
+    g ASSIGN 8 PLUS x;
+        FOR j FROM 0 TO 1 DO
+            c  ASSIGN  j - i;   [0,1,2,3]
+            x  ASSIGN  i DIV a;
+            pa ASSIGN  a PLUS b;
+            pb  ASSIGN  21;
+            pc  ASSIGN  33 DIV x;
+            pd  ASSIGN  44 PLUS z;
+        ENDFOR
+    h ASSIGN 10 PLUS x; [21]
+    x ASSIGN 11 PLUS x;
+    WRITE z;
+    WRITE k;
+    WRITE a;
+ENDFOR
+
+
+
+END

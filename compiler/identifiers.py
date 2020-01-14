@@ -10,10 +10,10 @@ class ArrayIdentifier:
         self.identifier = identifier
         self.index = index
 
-    def generate_code(self, program, register):
+    def generate_code(self, program, cell):
         logging.info(f"Generates code for ArrayIdentfier {self.identifier} at index {self.index}")
         array_cell = program.get_array_cell(self.identifier, self.index)
-        array_cell.register = register
+        array_cell.cell = cell
         return array_cell
 
     def get_variable(self, program):
@@ -41,10 +41,10 @@ class Identifier:
     def __init__(self, value):
         self.value = value
 
-    def generate_code(self, program, register_name):
+    def generate_code(self, program, cell):
         logging.info("Generating code for identifier")
         variable = program.get_variable(self.value)
-        variable.register = register_name
+        variable.cell = cell
         return variable
 
     def get_variable(self, program):

@@ -14,7 +14,7 @@ class IfThenConditional:
         variables_copy = {}
 
         for variable in program.variables.values():
-            variables_copy[variable.name] = variable.register
+            variables_copy[variable.name] = variable.cell
 
         line_to_fill = self.condition.generate_code(program)
 
@@ -41,7 +41,7 @@ class IfThenElseConditional(IfThenConditional):
         variables_copy = {}
 
         for variable in program.variables.values():
-            variables_copy[variable.name] = variable.register
+            variables_copy[variable.name] = variable.cell
 
         line_to_fill = self.condition.generate_code(program)
 

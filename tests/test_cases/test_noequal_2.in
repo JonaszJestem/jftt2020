@@ -1,0 +1,9 @@
+DECLARE
+b; c;
+IN
+b  ASSIGN  10;
+c  ASSIGN  10;
+IF b != c THEN
+    WRITE 1;
+ENDIF
+END

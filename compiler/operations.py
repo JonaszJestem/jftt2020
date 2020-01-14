@@ -1,7 +1,7 @@
 import logging
 
 from .variables import Number
-from .snippets import add, bin_pow, decrement, divide, equals, greater_than, halfing, increment, less_or_equal, \
+from .snippets import add, bin_pow, decrement, divide, equals, greater_than, increment, less_or_equal, \
     multiply, sub
 
 logging.basicConfig(level=logging.ERROR)
@@ -18,16 +18,15 @@ class AssignmentOperations:
 
         if isinstance(self.expression, ArithemticOperations):
             result_variable = self.expression.generate_code(program)
-            variable.register = result_variable.register
-            variable.store_in_memory(program, result_variable.register)
+            variable.cell = result_variable.cell
+            variable.store_in_memory(program, result_variable.cell)
         elif isinstance(self.expression.value, Number):
-            result_variable = self.expression.generate_code(program, 'G')
-            variable.register = result_variable.register
-            variable.store_in_memory(program, result_variable.register)
+            result_variable = self.expression.generate_code(program, 4)
+            variable.store_in_memory(program, result_variable.cell)
         else:
-            result_variable = self.expression.generate_code(program, 'G')
-            result_variable.load_from_memory(program, 'G')
-            variable.store_in_memory(program, result_variable.register)
+            result_variable = self.expression.generate_code(program, 4)
+            result_variable.load_from_memory(program, 4)
+            variable.store_in_memory(program, result_variable.cell)
 
     def get_variable_names(self):
         """
@@ -46,12 +45,12 @@ class ConditionOperations:
         self.left = left
         self.right = right
         self.relations = {
-            '>': lambda x, y, p: greater_than(x, y, p),
-            '<=': lambda x, y, p: less_or_equal(x, y, p),
-            '<': lambda x, y, p: greater_than(x, y, p, swap=True),
-            '>=': lambda x, y, p: less_or_equal(x, y, p, swap=True),
-            '=': lambda x, y, p: equals(x, y, p),
-            '!=': lambda x, y, p: equals(x, y, p, negate=True)
+            'GE': lambda x, y, p: greater_than(x, y, p),
+            'LEQ': lambda x, y, p: less_or_equal(x, y, p),
+            'LE': lambda x, y, p: greater_than(x, y, p, swap=True),
+            'GEQ': lambda x, y, p: less_or_equal(x, y, p, swap=True),
+            'EQ': lambda x, y, p: equals(x, y, p),
+            'NEQ': lambda x, y, p: equals(x, y, p, negate=True)
         }
 
         self.lambdas = {
@@ -71,15 +70,14 @@ class ConditionOperations:
         if type(self.left) is type(self.right) and type(self.left) is Number:
             return self.lambdas[self.op](self.left.value, self.right.value)
 
-        left_value = self.left.generate_code(program, register_name='C')
-        right_value = self.right.generate_code(program, register_name='D')
+        left_value = self.left.generate_code(program, 3)
+        right_value = self.right.generate_code(program, 4)
 
         if left_value.memory_localisation != -1:
-            left_value.load_from_memory(program, left_value.register)
+            left_value.load_from_memory(program, 3)
         if right_value.memory_localisation != -1:
-            right_value.load_from_memory(program, right_value.register)
+            right_value.load_from_memory(program, 4)
 
-        logging.info(f'{left_value.register}, {right_value.register}')
         line_to_fill = self.relations[self.op](left_value, right_value, program)
 
         return line_to_fill
@@ -111,7 +109,6 @@ class ArithemticOperations(ConditionOperations):
             '%': lambda x, y, p: divide(x, y, p, modulo=True),
             '++': lambda x, y, p: increment(x, y, p),
             '--': lambda x, y, p: decrement(x, y, p),
-            'half': lambda x, y, p: halfing(x, y, p),
             'bin_pow': lambda x, y, p: bin_pow(x, y, p)
         }
 
@@ -125,61 +122,27 @@ class ArithemticOperations(ConditionOperations):
 
     def generate_code(self, program):
         logging.info("Arithmetic snippets generating code")
-        if type(self.left) is type(self.right) and type(self.left) is Number:
-            result = Number(self.lambdas[self.op](self.left.value, self.right.value))
-            result_variable = result.generate_code(program, 'G')
-        else:
-            # swap left and right if operation allows it and left is a number
-            # thanks to this if we can optimize code Number is on the right side
-            operation = self.op
+        operation = self.op
 
-            if self.op == '-' and self._check_enough_small(self.right):
-                operation = '--'
-                variable_right = self.right.value
-            elif self.op == '+' and self._check_enough_small(self.right):
-                operation = '++'
-                variable_right = self.right.value
-            elif self.op == '/' and self._check_divisible_by_two(self.right):
-                operation = 'half'
-                variable_right = self.right.value
-            elif self.op == '*' and self._check_divisible_by_two(self.right):
-                operation = 'bin_pow'
-                variable_right = self.right.value
-            else:
-                variable_right = self.right.generate_code(program, register_name='F')
+        if self.op == 'MINUS':
+            operation = '-'
+        elif self.op == 'PLUS':
+            operation = '+'
+        elif self.op == 'MOD':
+            operation = '%'
+        elif self.op == 'DIV':
+            operation = '/'
+        elif self.op == 'TIMES':
+            operation = '*'
 
-            variable_left = self.left.generate_code(program, register_name='G')
+        variable_left = self.left.generate_code(program, 5)
+        variable_right = self.right.generate_code(program, 6)
 
-            # if same variables are only one has to be added
-            if hasattr(variable_right, 'register') and variable_left.register != variable_right.register:
-                if variable_right.memory_localisation != -1:
-                    variable_right.load_from_memory(program, variable_right.register)
-            if variable_left.memory_localisation != -1:
-                variable_left.load_from_memory(program, variable_left.register)
+        if variable_left.memory_localisation != -1:
+            variable_left.load_from_memory(program, 5)
+        if variable_right.memory_localisation != -1:
+            variable_right.load_from_memory(program, 6)
 
-            result_variable = self.snippets[operation](variable_left, variable_right, program)
+        result_variable = self.snippets[operation](variable_left, variable_right, program)
 
         return result_variable
-
-    def _check_divisible_by_two(self, right):
-        """
-        Checks if is divisible by two so we can make halfs or powers of two.
-        """
-        if type(right) is Number:
-            right = right.value
-            while right != 1:
-                if right % 2 == 1:
-                    return False
-                right //= 2
-            return True
-        return False
-
-    def _check_enough_small(self, right):
-        """
-        Checks if value is small enough to make incrementations (or decrementations)
-        instead of adding (or substraction)
-        """
-        if type(right) is Number:
-            if right.value < 28:
-                return True
-        return False

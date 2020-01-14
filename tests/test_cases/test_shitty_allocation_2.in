@@ -1,0 +1,26 @@
+DECLARE
+	a; b; c; d; e; z;
+IN
+	a ASSIGN 5;
+	b ASSIGN 10;
+	c ASSIGN 15;
+	e  ASSIGN  1234567890;
+	z  ASSIGN  1234567890987654321;
+	FOR i FROM 10 TO 12 DO
+		e ASSIGN  e DIV a;
+		z  ASSIGN  c /b;
+		IF a > b THEN
+			FOR j FROM 3 DOWNTO 0 DO
+				d  ASSIGN  c DIV j;
+				z  ASSIGN  z DIV a;
+				e ASSIGN  e  TIMES   b;
+				WRITE d;
+			ENDFOR
+		ELSE
+			e  ASSIGN  a  TIMES   b;
+			e  ASSIGN  c DIV a;
+			WRITE 2;
+		ENDIF
+		a  ASSIGN  a PLUS i;
+	ENDFOR
+END

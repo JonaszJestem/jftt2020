@@ -11,27 +11,27 @@ class JFTTLexer(Lexer):
         WHILE, DO, ENDWHILE, ENDDO, FOR, FROM, TO, DOWNTO, ENDFOR,  # loops
         READ, WRITE,  # io
         NUMBER, ASSIGN,  # declarations and constants
-        SEMICOLON, COLON,  # separators
-        DECLARE, IN, END, PIDENTIFIER  # program section
+        SEMICOLON, COLON, COMMA,  # separators
+        DECLARE, BEGIN, END, PIDENTIFIER  # program section
     }
 
     ignore = ' \t'
     ignore_comment = r'\[(.|\s)*?\]'
 
-    PLUS = r'\+'
-    MINUS = r'-'
-    MULTIPLY = r'\*'
-    DIVIDE = r'/'
-    MODULO = r'\%'
+    PLUS = r'PLUS'
+    MINUS = r'MINUS'
+    MULTIPLY = r'TIMES'
+    DIVIDE = r'DIV'
+    MODULO = r'MOD'
     LPARENTHESIS = r'\('
     RPARENTHESIS = r'\)'
 
-    EQUAL = r'\='
-    NOT_EQUAL = r'\!\='
-    LESS_OR_EQUAL = r'\<\='
-    GREATER_OR_EQUAL = r'\>\='
-    LESS_THAN = r'\<'
-    GREATER_THAN = r'\>'
+    EQUAL = r'EQ'
+    NOT_EQUAL = r'NEQ'
+    LESS_OR_EQUAL = r'LEQ'
+    GREATER_OR_EQUAL = r'GEQ'
+    LESS_THAN = r'LE'
+    GREATER_THAN = r'GE'
 
     IF = r'IF'
     THEN = r'THEN'
@@ -52,18 +52,19 @@ class JFTTLexer(Lexer):
     READ = r'READ'
     WRITE = r'WRITE'
 
-    ASSIGN = r'\:='
+    ASSIGN = r'ASSIGN'
 
     SEMICOLON = r'\;'
     COLON = r'\:'
+    COMMA = r'\,'
 
     DECLARE = r'DECLARE'
-    IN = r'IN'
+    BEGIN = r'BEGIN'
     END = r'END'
 
     PIDENTIFIER = r'[_a-z]+'
 
-    @_(r'[0-9]+')
+    @_(r'\-?[0-9]+')
     def NUMBER(self, t):
         t.value = int(t.value)
         return t

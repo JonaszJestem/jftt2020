@@ -1,5 +1,6 @@
 import logging
 
+from compiler.variables import copy_value
 
 logging.basicConfig(level=logging.ERROR)
 
@@ -8,26 +9,23 @@ class JumpFiller:
     """
     Class for ending commands involving jumps.
     """
+
     def __init__(self, returning_points, variables_in_past=dict()):
         self.returning_points = returning_points
         self.variables_in_past = variables_in_past
 
     def generate_code(self, program):
-        self.restore_variables(program)
-
         logging.info(f"Changing label in JUMP Command nr line {self.returning_points} value {program.line_no}")
         for returning_point in self.returning_points:
-            program.code[returning_point] = program.code[returning_point].replace("<replace_here>", str(program.line_no))
-
-
-    def restore_variables(self, program):
-        pass
+            program.code[returning_point] = program.code[returning_point].replace("<replace_here>",
+                                                                                  str(program.line_no))
 
 
 class ElseJumpFiller(JumpFiller):
     """
     Specific end for Else in If Then Else.
     """
+
     def __init__(self, else_commands, line_to_fill, variables_in_past=dict()):
         self.else_commands = else_commands
         self.variables_in_past = variables_in_past
@@ -49,6 +47,7 @@ class LoopJumpFiller:
     """
     Class to end loops with proper jumps.
     """
+
     def __init__(self, returning_points, additional_code=(), iterator=None, variables_in_past=dict()):
         self.returning_points = returning_points
         self.iterator = iterator
@@ -56,7 +55,8 @@ class LoopJumpFiller:
         self.variables_in_past = variables_in_past
 
     def generate_code(self, program):
-        logging.info(f"Changing label in JUMP for loop Command nr line {program.line_no + 1} value {self.returning_points}")
+        logging.info(
+            f"Changing label in JUMP for loop Command nr line {program.line_no + 1} value {self.returning_points}")
         self.restore_variables(program)
         self.generate_additional_code(program)
         self.destroy_iterator(program)
@@ -71,10 +71,11 @@ class LoopJumpFiller:
 
     def destroy_iterator(self, program):
         if self.iterator is not None:
-            program.variables.pop(self.iterator+'_end0')
+            program.variables.pop(self.iterator + '_end0')
 
     def restore_variables(self, program):
         pass
+
 
 class ForLoopJumpFiller(LoopJumpFiller):
     """
@@ -83,12 +84,13 @@ class ForLoopJumpFiller(LoopJumpFiller):
 
     def generate_code(self, program):
         iterator_variable = program.get_variable(self.iterator)
-        iterator_variable.register = 'B'
-        iterator_variable.load_from_memory(program, iterator_variable.register)
+        iterator_variable.cell = 9
+        iterator_variable.load_from_memory(program, 0)
 
-        program.code.append(f'INC {iterator_variable.register} # increment iterator')
+        program.code.append(f'INC # increment iterator')
+        copy_value(program, from_cell=0, to_cell=9)
         program.line_no += 1
-        iterator_variable.store_in_memory(program, iterator_variable.register)
+        iterator_variable.store_in_memory(program, iterator_variable.cell)
 
         program.code.append(f'JUMP {self.returning_points} #jump to condition')
         program.line_no += 1
@@ -103,15 +105,16 @@ class ForDownToLoopJumpFiller(LoopJumpFiller):
 
     def generate_code(self, program):
         iterator_variable = program.get_variable(self.iterator)
-        iterator_variable.register = 'B'
+        iterator_variable.cell = 9
 
-        iterator_variable.load_from_memory(program, iterator_variable.register)
+        iterator_variable.load_from_memory(program, 0)
 
-        program.code.append(f'JZERO {iterator_variable.register} <replace_here>')
+        program.code.append(f'JZERO <replace_here>')
         line_to_fill = program.line_no
-        program.code.append(f'DEC {iterator_variable.register} # decrement iterator')
+        program.code.append(f'DEC # decrement iterator')
         program.line_no += 2
-        iterator_variable.store_in_memory(program, iterator_variable.register)
+        copy_value(program, from_cell=0, to_cell=9)
+        iterator_variable.store_in_memory(program, iterator_variable.cell)
         program.code.append(f'JUMP {self.returning_points} #jump to condition')
         program.line_no += 1
         program.code[line_to_fill] = program.code[line_to_fill].replace("<replace_here>", str(program.line_no))
