@@ -184,6 +184,16 @@ class CTestFile(unittest.TestCase):
 
         self.assertEqual("-4\n5", result)
 
+    def test_div_1(self):
+        data = read_file_content(os.path.join(os.path.dirname(__file__), "test_cases/test_div_1.imp"))
+        code = self.parse(data)
+        with open("test_cases/test_div_1.mr", "w+") as file:
+            file.write(code)
+
+        result = get_output_from("test_cases/test_div_1.mr", "33 7")
+
+        self.assertEqual("2", result)
+
     def test_multiply(self):
         data = read_file_content(os.path.join(os.path.dirname(__file__), "test_cases/multiply.imp"))
         code = self.parse(data)
@@ -191,6 +201,16 @@ class CTestFile(unittest.TestCase):
             file.write(code)
 
         result = get_output_from("test_cases/multiply.mr", "33 7")
+
+        self.assertEqual("6\n9", result)
+
+    def test_multiply_1(self):
+        data = read_file_content(os.path.join(os.path.dirname(__file__), "test_cases/test_multiply_1.imp"))
+        code = self.parse(data)
+        with open("test_cases/test_multiply_1.mr", "w+") as file:
+            file.write(code)
+
+        result = get_output_from("test_cases/test_multiply_1.mr", "33 7")
 
         self.assertEqual("6\n9", result)
 
@@ -240,6 +260,126 @@ class CTestFile(unittest.TestCase):
 
         self.assertEqual("4\n3\n2\n1\n0\n4\n3\n2\n1\n4\n3\n2", result)
 
+    def test_division_4(self):
+        data = read_file_content(os.path.join(os.path.dirname(__file__), "test_cases/test_division_4.in"))
+        code = self.parse(data)
+        with open("test_cases/test_division_4.mr", "w+") as file:
+            file.write(code)
+
+        result = get_output_from("test_cases/test_division_4.mr", "20")
+
+        self.assertEqual("", result)
+
+    def test_equal_1(self):
+        data = read_file_content(os.path.join(os.path.dirname(__file__), "test_cases/test_equal_1.in"))
+        code = self.parse(data)
+        with open("test_cases/test_equal_1.mr", "w+") as file:
+            file.write(code)
+
+        result = get_output_from("test_cases/test_equal_1.mr", "20")
+
+        self.assertEqual("1", result)
+
+    def test_equal_2(self):
+        data = read_file_content(os.path.join(os.path.dirname(__file__), "test_cases/test_equal_2.in"))
+        code = self.parse(data)
+        with open("test_cases/test_equal_2.mr", "w+") as file:
+            file.write(code)
+
+        result = get_output_from("test_cases/test_equal_2.mr", "20")
+
+        self.assertEqual("", result)
+
+    def test_greater_1(self):
+        data = read_file_content(os.path.join(os.path.dirname(__file__), "test_cases/test_greater_1.in"))
+        code = self.parse(data)
+        with open("test_cases/test_greater_1.mr", "w+") as file:
+            file.write(code)
+
+        result = get_output_from("test_cases/test_greater_1.mr", "20")
+
+        self.assertEqual("1", result)
+
+    def test_if_then_esle_1(self):
+        data = read_file_content(os.path.join(os.path.dirname(__file__), "test_cases/test_if_then_esle_1.in"))
+        code = self.parse(data)
+        with open("test_cases/test_if_then_esle_1.mr", "w+") as file:
+            file.write(code)
+
+        result = get_output_from("test_cases/test_if_then_esle_1.mr", "20")
+
+        self.assertEqual("100", result)
+
+    def test_if_then_esle_2(self):
+        data = read_file_content(os.path.join(os.path.dirname(__file__), "test_cases/test_if_then_esle_2.in"))
+        code = self.parse(data)
+        with open("test_cases/test_if_then_esle_2.mr", "w+") as file:
+            file.write(code)
+
+        result = get_output_from("test_cases/test_if_then_esle_2.mr", "20")
+
+        self.assertEqual("1", result)
+
+    def test_less_1(self):
+        data = read_file_content(os.path.join(os.path.dirname(__file__), "test_cases/test_less_1.in"))
+        code = self.parse(data)
+        with open("test_cases/test_less_1.mr", "w+") as file:
+            file.write(code)
+
+        result = get_output_from("test_cases/test_less_1.mr", "20")
+
+        self.assertEqual("1", result)
+
+    def test_less_2(self):
+        data = read_file_content(os.path.join(os.path.dirname(__file__), "test_cases/test_less_2.in"))
+        code = self.parse(data)
+        with open("test_cases/test_less_2.mr", "w+") as file:
+            file.write(code)
+
+        result = get_output_from("test_cases/test_less_2.mr", "20")
+
+        self.assertEqual("2", result)
+
+    def test_noequal_1(self):
+        data = read_file_content(os.path.join(os.path.dirname(__file__), "test_cases/test_noequal_1.in"))
+        code = self.parse(data)
+        with open("test_cases/test_noequal_1.mr", "w+") as file:
+            file.write(code)
+
+        result = get_output_from("test_cases/test_noequal_1.mr", "20")
+
+        self.assertEqual("", result)
+
+    def test_noequal_2(self):
+        data = read_file_content(os.path.join(os.path.dirname(__file__), "test_cases/test_noequal_2.in"))
+        code = self.parse(data)
+        with open("test_cases/test_noequal_2.mr", "w+") as file:
+            file.write(code)
+
+        result = get_output_from("test_cases/test_noequal_2.mr", "20")
+
+        self.assertEqual("", result)
+
+    def test_noequal_3(self):
+        data = read_file_content(os.path.join(os.path.dirname(__file__), "test_cases/test_noequal_3.in"))
+        code = self.parse(data)
+        with open("test_cases/test_noequal_3.mr", "w+") as file:
+            file.write(code)
+
+        result = get_output_from("test_cases/test_noequal_3.mr", "20")
+
+        self.assertEqual("1", result)
+
+    def test_noequal_4(self):
+        data = read_file_content(os.path.join(os.path.dirname(__file__), "test_cases/test_noequal_4.in"))
+        code = self.parse(data)
+        with open("test_cases/test_noequal_4.mr", "w+") as file:
+            file.write(code)
+
+        result = get_output_from("test_cases/test_noequal_4.mr", "20")
+
+        self.assertEqual("", result)
+
     def test_divide(self):
         data = "DECLARE	tab(0:5) BEGIN	" \
                "tab(4) ASSIGN 11;	" \
@@ -255,7 +395,7 @@ class CTestFile(unittest.TestCase):
 
         self.assertEqual("707", result)
 
-    def test_multiply_1(self):
+    def test_multiplication(self):
         data = "DECLARE a, b, c, tab(0:5) BEGIN	" \
                "a ASSIGN 1;" \
                "b ASSIGN 2;" \

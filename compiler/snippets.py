@@ -41,7 +41,7 @@ def greater_than(variable_x, variable_y, program, swap=False):
     out_code = [
         f'LOAD {y_cell} #condition begining ',
         f'SUB {x_cell}',
-        f'JNEG {program.line_no + 5}',
+        f'JNEG {program.line_no + 4}',
         f'JUMP {label_false} #condtion end',
     ]
 

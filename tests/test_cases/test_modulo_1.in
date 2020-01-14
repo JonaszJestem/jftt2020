@@ -1,6 +1,6 @@
 DECLARE
 a; b; c;
-IN
+BEGIN
 
 a  ASSIGN  3;
 b  ASSIGN  14;

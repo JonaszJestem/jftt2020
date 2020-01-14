@@ -1,7 +1,7 @@
 DECLARE
 b
 BEGIN
-b  ASSIGN  10;
+b  ASSIGN  9;
 IF b GEQ 10 THEN
     b  ASSIGN  b  MOD  2;
     IF b EQ 0 THEN

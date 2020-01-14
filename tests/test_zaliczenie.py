@@ -59,15 +59,15 @@ class CTestFile(unittest.TestCase):
 
         self.assertEqual("2432902008176640000\n17711", result)
 
-    # def test_factorial(self):
-    #     data = read_file_content(os.path.join(os.path.dirname(__file__), "na_zaliczenie/4-factorial.imp"))
-    #     code = self.parse(data)
-    #     with open("na_zaliczenie/4-factorial.mr", "w+") as file:
-    #         file.write(code)
-    #
-    #     result = get_output_from("na_zaliczenie/4-factorial.mr", "20")
-    #
-    #     self.assertEqual("2432902008176640000", result)
+    def test_factorial(self):
+        data = read_file_content(os.path.join(os.path.dirname(__file__), "na_zaliczenie/4-factorial.imp"))
+        code = self.parse(data)
+        with open("na_zaliczenie/4-factorial.mr", "w+") as file:
+            file.write(code)
+
+        result = get_output_from("na_zaliczenie/4-factorial.mr", "11")
+
+        self.assertEqual("2432902008176640000", result)
 
     def test_tab(self):
         data = read_file_content(os.path.join(os.path.dirname(__file__), "na_zaliczenie/5-tab.imp"))
@@ -79,15 +79,16 @@ class CTestFile(unittest.TestCase):
 
         self.assertEqual("", result)
 
-    # def test_mod_mult(self):
-    #     data = read_file_content(os.path.join(os.path.dirname(__file__), "na_zaliczenie/6-mod-mult.imp"))
-    #     code = self.parse(data)
-    #     with open("na_zaliczenie/6-mod-mult.mr", "w+") as file:
-    #         file.write(code)
-    #
-    #     result = get_output_from("na_zaliczenie/6-mod-mult.mr", "1234567890 1234567890987654321 987654321")
-    #
-    #     self.assertEqual("674106858", result)
+    @unittest.skip("Mulitply too slow")
+    def test_mod_mult(self):
+        data = read_file_content(os.path.join(os.path.dirname(__file__), "na_zaliczenie/6-mod-mult.imp"))
+        code = self.parse(data)
+        with open("na_zaliczenie/6-mod-mult.mr", "w+") as file:
+            file.write(code)
+
+        result = get_output_from("na_zaliczenie/6-mod-mult.mr", "1234567890 1234567890987654321 987654321")
+
+        self.assertEqual("674106858", result)
 
     def test_loopiii1(self):
         data = read_file_content(os.path.join(os.path.dirname(__file__), "na_zaliczenie/7-loopiii.imp"))
@@ -135,9 +136,9 @@ class CTestFile(unittest.TestCase):
         with open("na_zaliczenie/program0.mr", "w+") as file:
             file.write(code)
 
-        result = get_output_from("na_zaliczenie/program0.mr", "152412")
+        result = get_output_from("na_zaliczenie/program0.mr", "8")
 
-        self.assertEqual("100101001101011100", result)
+        self.assertEqual("0\n0\n0\n0", result)
 
     def test_program2(self):
         data = read_file_content(os.path.join(os.path.dirname(__file__), "na_zaliczenie/program1.imp"))

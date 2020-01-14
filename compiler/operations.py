@@ -59,7 +59,8 @@ class ConditionOperations:
             '>=': lambda x, y: x >= y,
             '<=': lambda x, y: x <= y,
             '=': lambda x, y: x == y,
-            '!=': lambda x, y: x != y
+            '!=': lambda x, y: x != y,
+            'NEQ': lambda x, y: x != y
         }
 
     def generate_code(self, program):

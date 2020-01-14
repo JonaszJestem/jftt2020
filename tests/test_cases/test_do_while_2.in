@@ -1,16 +1,16 @@
 DECLARE
 b; c; 
-IN
+BEGIN
 b  ASSIGN  10;
 c  ASSIGN  9;
 DO
     WRITE c;
-    WHILE c != 0 DO
+    WHILE c NEQ 0 DO
         c  ASSIGN  c - 1;
         WRITE c;
     ENDWHILE
     c  ASSIGN  c - 1;
     WRITE c;
-WHILE c != 0
+WHILE c NEQ 0
 ENDDO
 END

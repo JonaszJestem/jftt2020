@@ -1,6 +1,6 @@
 DECLARE
-a; b; c;
-IN
+a, b, c
+BEGIN
 
 a  ASSIGN  12312312;
 b  ASSIGN  22;

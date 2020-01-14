@@ -1,0 +1,10 @@
+DECLARE
+	t(-5:5), a, b, d, c
+BEGIN
+    a ASSIGN 2;
+    FOR i FROM 2 TO 10 DO
+        a ASSIGN 2 TIMES a;
+        WRITE a;
+    ENDFOR
+END
+

@@ -9,6 +9,7 @@ BEGIN
     s(0) ASSIGN 1;
     m ASSIGN n;
     FOR i FROM 1 TO m DO
+        WRITE i;
 		a ASSIGN i MOD 2;
 		j ASSIGN i MINUS 1;
 		IF a EQ 1 THEN

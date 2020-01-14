@@ -1,8 +1,8 @@
 DECLARE
-b;
-IN
+b
+BEGIN
 b  ASSIGN  10;
-IF b = 10 THEN
+IF b EQ 10 THEN
     WRITE 1;
 ENDIF
 END
