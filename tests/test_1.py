@@ -212,7 +212,27 @@ class CTestFile(unittest.TestCase):
 
         result = get_output_from("test_cases/test_multiply_1.mr", "33 7")
 
-        self.assertEqual("6\n9", result)
+        self.assertEqual("4\n8\n16\n32\n64\n128\n256\n512\n1024\n2048\n", result)
+
+    def test_multiply_2(self):
+        data = read_file_content(os.path.join(os.path.dirname(__file__), "test_cases/test_multiply_2.imp"))
+        code = self.parse(data)
+        with open("test_cases/test_multiply_2.mr", "w+") as file:
+            file.write(code)
+
+        result = get_output_from("test_cases/test_multiply_2.mr", "33 7")
+
+        self.assertEqual("6", result)
+
+    def test_module_3(self):
+        data = read_file_content(os.path.join(os.path.dirname(__file__), "test_cases/test_modulo_3.in"))
+        code = self.parse(data)
+        with open("test_cases/test_modulo_3.mr", "w+") as file:
+            file.write(code)
+
+        result = get_output_from("test_cases/test_modulo_3.mr", "33 7")
+
+        self.assertEqual("0\n1", result)
 
     def test_numbers_mine(self):
         data = "DECLARE	c, h, j BEGIN " \
@@ -269,6 +289,16 @@ class CTestFile(unittest.TestCase):
         result = get_output_from("test_cases/test_division_4.mr", "20")
 
         self.assertEqual("", result)
+
+    def test_division_5(self):
+        data = read_file_content(os.path.join(os.path.dirname(__file__), "test_cases/test_division_5.in"))
+        code = self.parse(data)
+        with open("test_cases/test_division_5.mr", "w+") as file:
+            file.write(code)
+
+        result = get_output_from("test_cases/test_division_5.mr", "20")
+
+        self.assertEqual("5\n4", result)
 
     def test_equal_1(self):
         data = read_file_content(os.path.join(os.path.dirname(__file__), "test_cases/test_equal_1.in"))

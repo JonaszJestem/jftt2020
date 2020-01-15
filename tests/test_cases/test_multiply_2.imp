@@ -1,0 +1,9 @@
+DECLARE
+	a, b, c
+BEGIN
+    a ASSIGN 2;
+    b ASSIGN 3;
+    c ASSIGN b TIMES a;
+    WRITE c;
+END
+

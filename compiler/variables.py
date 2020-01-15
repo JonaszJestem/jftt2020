@@ -65,6 +65,7 @@ class Number:
         program.line_no += len(code)
         copy_value(program, from_cell=0, to_cell=cell)
         logging.info(f"Generating number {self.value}")
+        self.value = value_to_generate
         return Variable("accumulator_tmp", cell, memory_localisation=-1)
 
 

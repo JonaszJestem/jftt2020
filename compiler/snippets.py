@@ -122,17 +122,47 @@ def sub(variable_x, variable_y, program):
 def multiply(variable_x, variable_y, program):
     x = variable_x.cell
     y = variable_y.cell
-    result = 9
+    result =11
+    counter = 12
+
+    shifts = ['SUB 0', f'STORE {result}', f'STORE {counter}', 'DEC', 'STORE 2', 'INC', 'INC', 'STORE 3']
+    [program.code.append(command) for command in shifts]
+    program.line_no += len(shifts)
+
+
+    if x == y:
+        x = 5
+        copy_value_code(program, from_cell=6, to_cell=5)
+
+    # def multiply(x, y):
+    #     result = 0
+    #     counter = 0
+    #     while x:
+    #         if x % 2 == 1:
+    #             result += y << counter
+    #         counter += 1
+    #         x //= 2
+    #
+    #     return result
 
     out_code = [
+        f'LOAD {x} #multiplication start',
+        f'JZERO {program.line_no + 17}',  # jump to end
+        f'SHIFT 2',
+        f'SHIFT 3',
+        f'SUB {x}',
+        f'JZERO {program.line_no + 10}',  # to counter increase
         f'LOAD {y}',
-        f'JZERO {program.line_no + 8}', # jump to end
-        f'DEC',
-        f'STORE {y}',
-        f'LOAD {result}',
-        f'ADD {x}',
+        f'SHIFT {counter}',
+        f'ADD {result}',
         f'STORE {result}',
-        f'JUMP {program.line_no}',
+        f'LOAD {counter}',  # counter increase
+        f'INC',
+        f'STORE {counter}',
+        f'LOAD {x}',
+        f'SHIFT 2',
+        f'STORE {x}',
+        f'JUMP {program.line_no}',  # 15
     ]
 
     [program.code.append(command) for command in out_code]
@@ -172,22 +202,22 @@ def divide(variable_x, variable_y, program, modulo=False):
         f'INC',
         f'STORE {sign_helper}',
         f'LOAD {sign_helper}',
-        f'DEC', #13
+        f'DEC',  # 13
         f'JZERO {program.line_no + 35} #jump to handling mixed',
 
         f'LOAD {x}',
-        f'JPOS {program.line_no + 26}', # do poczatekdzielenia
+        f'JPOS {program.line_no + 26}',  # do poczatekdzielenia
         f'LOAD {iloraz}',
         f'INC',
         f'STORE {iloraz}',
-        f'LOAD {x}', # poczatek dzielenia 26
+        f'LOAD {x}',  # poczatek dzielenia 26
         f'SUB {y}',
         f'STORE {x}',
         f'STORE {reszta}',
         f'JPOS {program.line_no + 60} # jump to end',
-        f'JUMP {program.line_no + 17} #koniec dzeielenia', #do poczatek dzielenia
-        
-        f'LOAD {x}', # poczatek dzielenia 26
+        f'JUMP {program.line_no + 17} #koniec dzeielenia',  # do poczatek dzielenia
+
+        f'LOAD {x}',  # poczatek dzielenia 26
         f'STORE {reszta}',
         f'SUB {y}',
         f'STORE {x}',
@@ -195,11 +225,11 @@ def divide(variable_x, variable_y, program, modulo=False):
         f'LOAD {iloraz}',
         f'INC',
         f'STORE {iloraz}',
-        f'JUMP {program.line_no + 26} #koniec dzeielenia', #do poczatek dzielenia
+        f'JUMP {program.line_no + 26} #koniec dzeielenia',  # do poczatek dzielenia
 
         # mixed
-        f'LOAD {x}', # 35
-        f'JNEG {program.line_no + 46}', # 36 do poczatekdzielenia
+        f'LOAD {x}',  # 35
+        f'JNEG {program.line_no + 46}',  # 36 do poczatekdzielenia
         f'LOAD {x}',  # 37
         f'STORE {reszta}',
         f'ADD {y}',
@@ -210,7 +240,7 @@ def divide(variable_x, variable_y, program, modulo=False):
         f'STORE {iloraz}',
         f'JUMP {program.line_no + 37} # koniec dzeielenia',  # 45 do poczatek dzielenia
 
-        f'LOAD {x}', # 46 poczatek dzielenia
+        f'LOAD {x}',  # 46 poczatek dzielenia
         f'STORE {reszta}',
         f'ADD {y}',
         f'STORE {x}',
@@ -218,12 +248,12 @@ def divide(variable_x, variable_y, program, modulo=False):
         f'LOAD {iloraz}',
         f'DEC',
         f'STORE {iloraz}',
-        f'JUMP {program.line_no + 46} #54 koniec dzeielenia', #do poczatek dzielenia
+        f'JUMP {program.line_no + 46} #54 koniec dzeielenia',  # do poczatek dzielenia
         f'LOAD {iloraz}',
         f'DEC',
         f'STORE {iloraz}',
         f'LOAD {x}',
-        f'STORE {reszta}', #59
+        f'STORE {reszta}',  # 59
     ]
     [program.code.append(command) for command in out_code]
     # [print(f'{i}: {program.code[i]}') for i in range(len(program.code))]
@@ -235,6 +265,72 @@ def divide(variable_x, variable_y, program, modulo=False):
         return Variable('helper', reszta, -1)
     else:
         return Variable('helper', iloraz, -1)
+
+
+def divide_by_2(variable_x, variable_y, program):
+    x = variable_x.cell
+    y = variable_y.cell
+    # results
+    iloraz = 3
+
+    if x == y:
+        x = 5
+        copy_value_code(program, from_cell=6, to_cell=5)
+
+    clear = ['SUB 0', 'STORE 3', 'STORE 4', 'STORE 7', 'STORE 8']
+    [program.code.append(command) for command in clear]
+    program.line_no += 5
+
+    out_code = [
+        f'SUB 0',
+        f'DEC',
+        f'STORE {y}',
+        f'LOAD {x}',
+        f'SHIFT {y}',
+        f'STORE {iloraz}',
+    ]
+
+    [program.code.append(command) for command in out_code]
+    program.line_no += len(out_code)
+
+    return Variable('helper', iloraz, -1)
+
+
+def mod_by_2(variable_x, variable_y, program):
+    x = variable_x.cell
+    y = variable_y.cell
+    # results
+    shift_left = 3
+    shift_right = 4
+    result = 8
+
+    if x == y:
+        x = 5
+        copy_value_code(program, from_cell=6, to_cell=5)
+
+    clear = ['SUB 0', 'DEC', 'STORE 3', 'INC', 'INC', 'STORE 4']
+    [program.code.append(command) for command in clear]
+    program.line_no += len(clear)
+
+    out_code = [
+        f'LOAD {x}',
+        f'SHIFT {shift_left}',
+        f'SHIFT {shift_right}',
+        f'SUB {x}',
+        f'JZERO {program.line_no + 6}',  # omit jump below
+        f'JUMP {program.line_no + 9}',  # jump to is not odd
+        f'SUB 0',
+        f'STORE {result}',
+        f'JUMP {program.line_no + 13}',  # jump to end
+        f'SUB 0',  # is not odd
+        f'INC',
+        f'STORE {result}',
+    ]
+
+    [program.code.append(command) for command in out_code]
+    program.line_no += len(out_code)
+
+    return Variable('helper', result, -1)
 
 
 def decrement(variable_x, variable_y, program):

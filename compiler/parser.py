@@ -28,7 +28,7 @@ class JFTTParser(Parser):
     def __init__(self, analysis=True):
         self.variables = {}
         self.arrays = {}
-        self.used_memory = 10
+        self.used_memory = 20
         self.analysis = analysis
         self.variables_tracker = {}
         self.ignored_variables = []

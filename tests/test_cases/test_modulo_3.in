@@ -1,0 +1,11 @@
+DECLARE
+a, b
+BEGIN
+
+a  ASSIGN  10;
+b  ASSIGN  11;
+a  ASSIGN  a  MOD  2;
+b  ASSIGN  b  MOD  2;
+WRITE a;
+WRITE b;
+END

@@ -2,7 +2,7 @@ import logging
 
 from .variables import Number
 from .snippets import add, bin_pow, decrement, divide, equals, greater_than, increment, less_or_equal, \
-    multiply, sub
+    multiply, sub, divide_by_2, mod_by_2
 
 logging.basicConfig(level=logging.ERROR)
 
@@ -119,6 +119,7 @@ class ArithemticOperations(ConditionOperations):
             '*': lambda x, y: x * y,
             '/': lambda x, y: x // y,
             '%': lambda x, y: x % y,
+            'PLUS': lambda x, y: x % y,
         }
 
     def generate_code(self, program):
@@ -143,6 +144,12 @@ class ArithemticOperations(ConditionOperations):
             variable_left.load_from_memory(program, 5)
         if variable_right.memory_localisation != -1:
             variable_right.load_from_memory(program, 6)
+
+        if operation == '/' and type(self.right) is Number and self.right.value == 2:
+            return divide_by_2(variable_left, variable_right, program)
+
+        if operation == '%' and type(self.right) is Number and self.right.value == 2:
+            return mod_by_2(variable_left, variable_right, program)
 
         result_variable = self.snippets[operation](variable_left, variable_right, program)
 
