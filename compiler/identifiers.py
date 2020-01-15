@@ -2,7 +2,7 @@ import logging
 
 from .variables import Variable
 
-logging.basicConfig(level=logging.ERROR)
+
 
 
 class ArrayIdentifier:
@@ -11,7 +11,7 @@ class ArrayIdentifier:
         self.index = index
 
     def generate_code(self, program, cell):
-        logging.info(f"Generates code for ArrayIdentfier {self.identifier} at index {self.index}")
+
         array_cell = program.get_array_cell(self.identifier, self.index)
         array_cell.cell = cell
         return array_cell
@@ -30,7 +30,7 @@ class Pidentifier:
         self.value = value
 
     def generate_code(self, program):
-        logging.info("Generating code for pidentifier")
+
         program.variables[self.value] = Variable(self.value, None,  program.used_memory)
         program.used_memory += 1
         variable = program.get_variable(self.value)
@@ -42,7 +42,7 @@ class Identifier:
         self.value = value
 
     def generate_code(self, program, cell):
-        logging.info("Generating code for identifier")
+
         variable = program.get_variable(self.value)
         variable.cell = cell
         return variable

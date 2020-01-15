@@ -1,6 +1,6 @@
 from .jump_fillers import JumpFiller, ElseJumpFiller
 import logging
-logging.basicConfig(level=logging.ERROR)
+
 
 
 class IfThenConditional:
@@ -9,7 +9,7 @@ class IfThenConditional:
         self.if_commands = if_commands
 
     def generate_code(self, program):
-        logging.info("IfThenConditional generating code")
+
 
         variables_copy = {}
 
@@ -37,7 +37,7 @@ class IfThenElseConditional(IfThenConditional):
         super().__init__(condition, if_commands)
 
     def generate_code(self, program):
-        logging.info("IfThenElseConditional generating code")
+
         variables_copy = {}
 
         for variable in program.variables.values():

@@ -2,7 +2,7 @@ import logging
 
 from .variables import Number, copy_value
 
-logging.basicConfig(level=logging.DEBUG)
+
 
 
 # DONE
@@ -11,7 +11,7 @@ class Write:
         self.value = value
 
     def generate_code(self, program):
-        logging.info('Writing')
+
         variable = self.value.generate_code(program)
         if variable.memory_localisation != -1:
             variable.load_from_memory(program, 0)
@@ -30,7 +30,7 @@ class Read:
         self.identifier = identifier
 
     def generate_code(self, program):
-        logging.info('READING')
+
         variable = self.identifier.get_variable(program)
         program.code.append(f'GET')
         copy_value(program, from_cell=0, to_cell=2)

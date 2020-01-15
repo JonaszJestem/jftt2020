@@ -27,7 +27,7 @@ class CTestFile(unittest.TestCase):
 
         result = get_output_from("na_zaliczenie/00-div-mod.mr", "33 7")
 
-        self.assertEqual("4\n5\n-4\n5\n5\n2\n-5\n2", result)
+        self.assertEqual("4\n5\n-5\n-2\n4\n-5\n-5\n2", result)
 
     def test_numbers(self):
         data = read_file_content(os.path.join(os.path.dirname(__file__), "na_zaliczenie/1-numbers.imp"))
@@ -85,7 +85,7 @@ class CTestFile(unittest.TestCase):
         with open("na_zaliczenie/6-mod-mult.mr", "w+") as file:
             file.write(code)
 
-        # result = get_output_from("na_zaliczenie/6-mod-mult.mr", "1234567890 1234567890987654321 987654321")
+        result = get_output_from("na_zaliczenie/6-mod-mult.mr", "1234567890 1234567890987654321 987654321")
 
         self.assertEqual("674106858", result)
 
@@ -156,7 +156,7 @@ class CTestFile(unittest.TestCase):
         self.assertEqual(
             "2\n3\n5\n7\n11\n13\n17\n19\n23\n29\n31\n37\n41\n43\n47\n53\n59\n61\n67\n71\n73\n79\n83\n89\n97", result)
 
-    def test_program3(self):
+    def test_program3_1(self):
         data = read_file_content(os.path.join(os.path.dirname(__file__), "na_zaliczenie/program2.imp"))
         code = self.parse(data)
         with open("na_zaliczenie/program2.mr", "w+") as file:
@@ -164,9 +164,9 @@ class CTestFile(unittest.TestCase):
 
         result = get_output_from("na_zaliczenie/program2.mr", "12345678901")
 
-        self.assertEqual("2\n2\n53\n1\n587\n1", result)
+        self.assertEqual("857\n1\n14405693\n1", result)
 
-    def test_program3(self):
+    def test_program3_2(self):
         data = read_file_content(os.path.join(os.path.dirname(__file__), "na_zaliczenie/program2.imp"))
         code = self.parse(data)
         with open("na_zaliczenie/program2.mr", "w+") as file:
@@ -174,7 +174,7 @@ class CTestFile(unittest.TestCase):
 
         result = get_output_from("na_zaliczenie/program2.mr", "12345678903")
 
-        self.assertEqual("2\n2\n53\n1\n587\n1", result)
+        self.assertEqual("3\n1\n4115226301\n1", result)
 
 
 def get_output_from(mr_code, input_string=""):

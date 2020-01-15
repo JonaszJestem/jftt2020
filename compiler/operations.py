@@ -4,7 +4,7 @@ from .variables import Number
 from .snippets import add, bin_pow, decrement, divide, equals, greater_than, increment, less_or_equal, \
     multiply, sub, divide_by_2, mod_by_2
 
-logging.basicConfig(level=logging.ERROR)
+
 
 
 class AssignmentOperations:
@@ -13,7 +13,7 @@ class AssignmentOperations:
         self.expression = expression
 
     def generate_code(self, program):
-        logging.info("AssignmentOperations generating code")
+
         variable = self.identifier.get_variable(program)
 
         if isinstance(self.expression, ArithemticOperations):
@@ -67,7 +67,7 @@ class ConditionOperations:
         """
         Generates line to fill for condition
         """
-        logging.info("ConditionOperations generating code")
+
         if type(self.left) is type(self.right) and type(self.left) is Number:
             return self.lambdas[self.op](self.left.value, self.right.value)
 
@@ -123,7 +123,7 @@ class ArithemticOperations(ConditionOperations):
         }
 
     def generate_code(self, program):
-        logging.info("Arithmetic snippets generating code")
+
         operation = self.op
 
         if self.op == 'MINUS':

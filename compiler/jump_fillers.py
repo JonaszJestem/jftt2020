@@ -2,7 +2,7 @@ import logging
 
 from compiler.variables import copy_value
 
-logging.basicConfig(level=logging.ERROR)
+
 
 
 class JumpFiller:
@@ -15,7 +15,7 @@ class JumpFiller:
         self.variables_in_past = variables_in_past
 
     def generate_code(self, program):
-        logging.info(f"Changing label in JUMP Command nr line {self.returning_points} value {program.line_no}")
+
         for returning_point in self.returning_points:
             program.code[returning_point] = program.code[returning_point].replace("<replace_here>",
                                                                                   str(program.line_no))
@@ -55,8 +55,6 @@ class LoopJumpFiller:
         self.variables_in_past = variables_in_past
 
     def generate_code(self, program):
-        logging.info(
-            f"Changing label in JUMP for loop Command nr line {program.line_no + 1} value {self.returning_points}")
         self.restore_variables(program)
         self.generate_additional_code(program)
         self.destroy_iterator(program)

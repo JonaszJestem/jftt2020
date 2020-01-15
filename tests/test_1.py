@@ -290,6 +290,16 @@ class CTestFile(unittest.TestCase):
 
         self.assertEqual("", result)
 
+    def test_division_2(self):
+        data = read_file_content(os.path.join(os.path.dirname(__file__), "test_cases/test_division_2.in"))
+        code = self.parse(data)
+        with open("test_cases/test_division_2.mr", "w+") as file:
+            file.write(code)
+
+        result = get_output_from("test_cases/test_division_2.mr", "20")
+
+        self.assertEqual("", result)
+
     def test_division_5(self):
         data = read_file_content(os.path.join(os.path.dirname(__file__), "test_cases/test_division_5.in"))
         code = self.parse(data)

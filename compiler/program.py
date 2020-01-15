@@ -59,7 +59,7 @@ class JFTTProgram:
         """
         Gets exact register byb register_name.
         """
-        logging.info(f"Getting register {register_name}")
+
         for variable_object in self.variables.values():
             if variable_object.register == register_name:
                 variable_object.store_in_memory(self)

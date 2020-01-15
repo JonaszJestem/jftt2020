@@ -5,7 +5,7 @@ from .identifiers import Identifier, Pidentifier
 from .jump_fillers import JumpFiller, ForDownToLoopJumpFiller, ForLoopJumpFiller, LoopJumpFiller
 from .operations import AssignmentOperations, ConditionOperations
 
-logging.basicConfig(level=logging.DEBUG)
+
 
 
 # DONE

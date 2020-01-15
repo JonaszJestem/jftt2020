@@ -6,14 +6,10 @@ from .variables import Variable, copy_value
 def less_or_equal(variable_x, variable_y, program, swap=False):
     x, y = variable_x.cell, variable_y.cell
 
-    logging.info('Less or equal generating code')
     label_false = "<replace_here>"
     line_to_fill = program.line_no + 4
     if swap:
         x, y = y, x
-
-    # NOTE x and y should become busy but here we
-    # don't ask for registers so they are safe
 
     out_code = [
         f'LOAD {x} #condition begining ',
@@ -32,7 +28,6 @@ def less_or_equal(variable_x, variable_y, program, swap=False):
 def greater_than(variable_x, variable_y, program, swap=False):
     x_cell, y_cell = variable_x.cell, variable_y.cell
 
-    logging.info('Greater than generating code')
     label_false = "<replace_here>"
     line_to_fill = program.line_no + 3
     if swap:
@@ -52,8 +47,6 @@ def greater_than(variable_x, variable_y, program, swap=False):
 
 
 def equals(variable_x, variable_y, program, negate=False):
-    logging.info('Equals generating code')
-
     x, y = variable_x.cell, variable_y.cell
 
     label_false = "<replace_here>"
@@ -122,13 +115,12 @@ def sub(variable_x, variable_y, program):
 def multiply(variable_x, variable_y, program):
     x = variable_x.cell
     y = variable_y.cell
-    result =11
+    result = 11
     counter = 12
 
     shifts = ['SUB 0', f'STORE {result}', f'STORE {counter}', 'DEC', 'STORE 2', 'INC', 'INC', 'STORE 3']
     [program.code.append(command) for command in shifts]
     program.line_no += len(shifts)
-
 
     if x == y:
         x = 5
@@ -179,82 +171,138 @@ def divide(variable_x, variable_y, program, modulo=False):
     reszta = 4
 
     sign_helper = 7
+    helper_1 = 8
+    helper_2 = 9
 
     if x == y:
         x = 5
         copy_value_code(program, from_cell=6, to_cell=5)
 
-    clear = ['SUB 0', 'STORE 3', 'STORE 4', 'STORE 7', 'STORE 8']
+    clear = ['SUB 0', 'STORE 3', 'STORE 4', 'STORE 7', 'STORE 8', 'STORE 9', 'STORE 17']
     [program.code.append(command) for command in clear]
-    program.line_no += 5
+    program.line_no += len(clear)
+
 
     out_code = [
-        f'LOAD {y}',
-        f'JZERO {program.line_no + 60} # dzielenie przez 0',
+        # f'COPY {reszta} {x} #division',
         f'LOAD {x}',
-        f'JPOS {program.line_no + 7}',
-        f'LOAD {sign_helper}',
-        f'INC',
-        f'STORE {sign_helper}',
-        f'LOAD {y}',
-        f'JPOS {program.line_no + 12}',
-        f'LOAD {sign_helper}',
-        f'INC',
-        f'STORE {sign_helper}',
-        f'LOAD {sign_helper}',
-        f'DEC',  # 13
-        f'JZERO {program.line_no + 35} #jump to handling mixed',
+        f'STORE {reszta}',
 
-        f'LOAD {x}',
-        f'JPOS {program.line_no + 26}',  # do poczatekdzielenia
-        f'LOAD {iloraz}',
-        f'INC',
+        # f'JZERO {y} {program.line_no + 24} #zero_divison',
+        f'LOAD {y}',  # 2
+        f'JZERO {program.line_no + 63} # dzielenie przez 0',  # jump to zeroying
+
+        # f'COPY {helper_1} {y}',
+        f'LOAD {y}',  # 4
+        f'STORE {helper_1}',
+
+        # f'COPY {iloraz} {helper_1}',
+        f'LOAD {helper_1}',  # 6
         f'STORE {iloraz}',
-        f'LOAD {x}',  # poczatek dzielenia 26
-        f'SUB {y}',
-        f'STORE {x}',
-        f'STORE {reszta}',
-        f'JPOS {program.line_no + 60} # jump to end',
-        f'JUMP {program.line_no + 17} #koniec dzeielenia',  # do poczatek dzielenia
 
-        f'LOAD {x}',  # poczatek dzielenia 26
-        f'STORE {reszta}',
-        f'SUB {y}',
-        f'STORE {x}',
-        f'JNEG {program.line_no + 60} # jump to end',
-        f'LOAD {iloraz}',
-        f'INC',
+        # f'SUB {iloraz} {reszta}',
+        f'LOAD {iloraz}',  # 8
+        f'SUB {reszta}',
         f'STORE {iloraz}',
-        f'JUMP {program.line_no + 26} #koniec dzeielenia',  # do poczatek dzielenia
 
-        # mixed
-        f'LOAD {x}',  # 35
-        f'JNEG {program.line_no + 46}',  # 36 do poczatekdzielenia
-        f'LOAD {x}',  # 37
-        f'STORE {reszta}',
-        f'ADD {y}',
-        f'STORE {x}',
-        f'JNEG {program.line_no + 60} # jump to end',
-        f'LOAD {iloraz}',
+        # f'JZERO {iloraz} {program.line_no + 7}',
+        f'LOAD {iloraz}',  # 11
+        f'JNEG {program.line_no + 15}',
+        f'JZERO {program.line_no + 15}',
+
+
+        # f'JUMP {program.line_no + 9}',
+        f'JUMP {program.line_no + 19}',  # 14
+
+        # f'ADD {helper_1} {helper_1}', #7
+        f'LOAD {helper_1}',  # 15
+        f'ADD {helper_1}',
+        f'STORE {helper_1}',
+
+        # f'JUMP {program.line_no + 3}',
+        f'JUMP {program.line_no + 6}',  # 18
+
+        # f'SUB {iloraz} {iloraz}',
+        f'SUB 0',  # 19
+        f'STORE {iloraz}',
+
+        # f'COPY {helper_2} {helper_1}', #10
+        f'LOAD {helper_1}',  # 21
+        f'STORE {helper_2}',
+
+        # f'SUB {helper_2} {reszta}',
+        f'LOAD {helper_2}',  # 23
+        f'SUB {reszta}',
+        f'STORE {helper_2}',
+
+        # f'JZERO {helper_2} {program.line_no + 16}',
+        f'LOAD {helper_2}',  # 26
+        f'JZERO {program.line_no + 39}',
+        f'JNEG {program.line_no + 39}',
+
+        # f'ADD {iloraz} {iloraz}',
+        f'LOAD {iloraz}',  # 29
+        f'ADD {iloraz}',
+        f'STORE {iloraz}',
+
+        # f'HALF {helper_1}',
+        f'SUB 0',  # 32
         f'DEC',
-        f'STORE {iloraz}',
-        f'JUMP {program.line_no + 37} # koniec dzeielenia',  # 45 do poczatek dzielenia
+        f'STORE 13',
+        f'LOAD {helper_1}',
+        f'SHIFT {13}',
+        f'STORE {helper_1}',
 
-        f'LOAD {x}',  # 46 poczatek dzielenia
+        # f'JUMP {program.line_no + 20}',
+        f'JUMP {program.line_no + 54}',  # 38
+
+        # f'ADD {iloraz} {iloraz}', # 16
+        f'LOAD {iloraz}',  # 39
+        f'ADD {iloraz}',
+        f'STORE {iloraz}',
+
+        # f'INC {iloraz}',
+        f'LOAD {iloraz}',  # 42
+        f'INC',
+        f'STORE {iloraz}',
+
+        # f'SUB {reszta} {helper_1}',
+        f'LOAD {reszta}',  # 45
+        f'SUB {helper_1}',
         f'STORE {reszta}',
-        f'ADD {y}',
-        f'STORE {x}',
-        f'JPOS {program.line_no + 55} # jump to end',
-        f'LOAD {iloraz}',
+
+        # f'HALF {helper_1}',
+        f'SUB 0',  # 48
         f'DEC',
-        f'STORE {iloraz}',
-        f'JUMP {program.line_no + 46} #54 koniec dzeielenia',  # do poczatek dzielenia
-        f'LOAD {iloraz}',
-        f'DEC',
-        f'STORE {iloraz}',
-        f'LOAD {x}',
-        f'STORE {reszta}',  # 59
+        f'STORE 13',
+        f'LOAD {helper_1}',
+        f'SHIFT {13}',
+        f'STORE {helper_1}',
+
+        # f'COPY {helper_2} {y}',#20
+        f'LOAD {y}',  # 54
+        f'STORE {helper_2}',
+
+        # f'SUB {helper_2} {helper_1}',
+        f'LOAD {helper_2}',  # 56
+        f'SUB {helper_1}',
+        f'STORE {helper_2}',
+
+        # f'JZERO {helper_2} {program.line_no + 10}',
+        f'LOAD {helper_2}',  # 59
+        f'JZERO {program.line_no + 21}',
+        f'JNEG {program.line_no + 21}',
+
+        # f'JUMP {program.line_no + 26}',
+        f'JUMP {program.line_no + 66}',  # 62
+
+        # f'SUB {reszta} {reszta}',#zeroying
+        # f'SUB {iloraz} {iloraz} #division end',
+        f'SUB 0',  # 63
+        f'LOAD {reszta}',
+        f'LOAD {iloraz} #division end',
     ]
+
     [program.code.append(command) for command in out_code]
     # [print(f'{i}: {program.code[i]}') for i in range(len(program.code))]
     program.line_no += len(out_code)
