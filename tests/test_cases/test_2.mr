@@ -1,0 +1,1246 @@
+SUB 0 #generate number 4294967297
+INC
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+INC
+STORE 4 # copied from 0 to 4
+SUB 0 #generate number 20
+INC
+ADD 0
+ADD 0
+INC
+ADD 0
+ADD 0
+STORE 1 # copied from 0 to 1
+SUB 0
+ADD 4
+STOREI 1 # store into memory a(0)
+SUB 0 #generate number 4294967298
+INC
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+INC
+ADD 0
+STORE 4 # copied from 0 to 4
+SUB 0 #generate number 21
+INC
+ADD 0
+ADD 0
+INC
+ADD 0
+ADD 0
+INC
+STORE 1 # copied from 0 to 1
+SUB 0
+ADD 4
+STOREI 1 # store into memory a(1)
+SUB 0 #generate number 4294967299
+INC
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+INC
+ADD 0
+INC
+STORE 4 # copied from 0 to 4
+SUB 0 #generate number 22
+INC
+ADD 0
+ADD 0
+INC
+ADD 0
+INC
+ADD 0
+STORE 1 # copied from 0 to 1
+SUB 0
+ADD 4
+STOREI 1 # store into memory a(2)
+SUB 0 #generate number 4294967300
+INC
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+INC
+ADD 0
+ADD 0
+STORE 4 # copied from 0 to 4
+SUB 0 #generate number 23
+INC
+ADD 0
+ADD 0
+INC
+ADD 0
+INC
+ADD 0
+INC
+STORE 1 # copied from 0 to 1
+SUB 0
+ADD 4
+STOREI 1 # store into memory a(3)
+SUB 0 #generate number 20
+INC
+ADD 0
+ADD 0
+INC
+ADD 0
+ADD 0
+STORE 1 # copied from 0 to 1
+LOADI 1 # load from memory a(0)
+STORE 5 # copied from 0 to 5
+SUB 0 #generate number 21
+INC
+ADD 0
+ADD 0
+INC
+ADD 0
+ADD 0
+INC
+STORE 1 # copied from 0 to 1
+LOADI 1 # load from memory a(1)
+STORE 6 # copied from 0 to 6
+SUB 0
+STORE 11
+STORE 12
+DEC
+STORE 2
+INC
+INC
+STORE 3
+LOAD 5 #multiplication start
+JZERO 239
+SHIFT 2
+SHIFT 3
+SUB 5
+JZERO 232
+LOAD 6
+SHIFT 12
+ADD 11
+STORE 11
+LOAD 12
+INC
+STORE 12
+LOAD 5
+SHIFT 2
+STORE 5
+JUMP 222
+SUB 0 #generate number 24
+INC
+ADD 0
+INC
+ADD 0
+ADD 0
+ADD 0
+STORE 5 # copied from 0 to 5
+SUB 0
+ADD 11
+STOREI 5 #store into memory n
+SUB 0 #generate number 24
+INC
+ADD 0
+INC
+ADD 0
+ADD 0
+ADD 0
+STORE 5 # copied from 0 to 5
+LOADI 5 #load from memory n
+STORE 5 # copied from 0 to 5
+SUB 0 #generate number 22
+INC
+ADD 0
+ADD 0
+INC
+ADD 0
+INC
+ADD 0
+STORE 1 # copied from 0 to 1
+LOADI 1 # load from memory a(2)
+STORE 6 # copied from 0 to 6
+SUB 0
+STORE 11
+STORE 12
+DEC
+STORE 2
+INC
+INC
+STORE 3
+LOAD 5 #multiplication start
+JZERO 296
+SHIFT 2
+SHIFT 3
+SUB 5
+JZERO 289
+LOAD 6
+SHIFT 12
+ADD 11
+STORE 11
+LOAD 12
+INC
+STORE 12
+LOAD 5
+SHIFT 2
+STORE 5
+JUMP 279
+SUB 0 #generate number 24
+INC
+ADD 0
+INC
+ADD 0
+ADD 0
+ADD 0
+STORE 5 # copied from 0 to 5
+SUB 0
+ADD 11
+STOREI 5 #store into memory n
+SUB 0 #generate number 24
+INC
+ADD 0
+INC
+ADD 0
+ADD 0
+ADD 0
+STORE 5 # copied from 0 to 5
+LOADI 5 #load from memory n
+STORE 5 # copied from 0 to 5
+SUB 0 #generate number 23
+INC
+ADD 0
+ADD 0
+INC
+ADD 0
+INC
+ADD 0
+INC
+STORE 1 # copied from 0 to 1
+LOADI 1 # load from memory a(3)
+STORE 6 # copied from 0 to 6
+SUB 0
+STORE 11
+STORE 12
+DEC
+STORE 2
+INC
+INC
+STORE 3
+LOAD 5 #multiplication start
+JZERO 354
+SHIFT 2
+SHIFT 3
+SUB 5
+JZERO 347
+LOAD 6
+SHIFT 12
+ADD 11
+STORE 11
+LOAD 12
+INC
+STORE 12
+LOAD 5
+SHIFT 2
+STORE 5
+JUMP 337
+SUB 0 #generate number 24
+INC
+ADD 0
+INC
+ADD 0
+ADD 0
+ADD 0
+STORE 5 # copied from 0 to 5
+SUB 0
+ADD 11
+STOREI 5 #store into memory n
+SUB 0 #generate number 2
+INC
+ADD 0
+STORE 4 # copied from 0 to 4
+SUB 0 #generate number 28
+INC
+ADD 0
+INC
+ADD 0
+INC
+ADD 0
+ADD 0
+STORE 5 # copied from 0 to 5
+SUB 0
+ADD 4
+STOREI 5 #store into memory dzielnik
+SUB 0 #generate number 28
+INC
+ADD 0
+INC
+ADD 0
+INC
+ADD 0
+ADD 0
+STORE 5 # copied from 0 to 5
+LOADI 5 #load from memory dzielnik
+STORE 5 # copied from 0 to 5
+SUB 0 #generate number 28
+INC
+ADD 0
+INC
+ADD 0
+INC
+ADD 0
+ADD 0
+STORE 6 # copied from 0 to 6
+LOADI 6 #load from memory dzielnik
+STORE 6 # copied from 0 to 6
+SUB 0
+STORE 11
+STORE 12
+DEC
+STORE 2
+INC
+INC
+STORE 3
+SUB 0
+ADD 6
+STORE 5 # copied from 6 to 5
+LOAD 5 #multiplication start
+JZERO 431
+SHIFT 2
+SHIFT 3
+SUB 5
+JZERO 424
+LOAD 6
+SHIFT 12
+ADD 11
+STORE 11
+LOAD 12
+INC
+STORE 12
+LOAD 5
+SHIFT 2
+STORE 5
+JUMP 414
+SUB 0 #generate number 25
+INC
+ADD 0
+INC
+ADD 0
+ADD 0
+ADD 0
+INC
+STORE 5 # copied from 0 to 5
+SUB 0
+ADD 11
+STOREI 5 #store into memory m
+SUB 0 #generate number 24
+INC
+ADD 0
+INC
+ADD 0
+ADD 0
+ADD 0
+STORE 3 # copied from 0 to 3
+LOADI 3 #load from memory n
+STORE 3 # copied from 0 to 3
+SUB 0 #generate number 25
+INC
+ADD 0
+INC
+ADD 0
+ADD 0
+ADD 0
+INC
+STORE 4 # copied from 0 to 4
+LOADI 4 #load from memory m
+STORE 4 # copied from 0 to 4
+LOAD 4 #condition begining 
+SUB 3
+JNEG 469
+JZERO 469
+JUMP 1213 #condtion end
+SUB 0 #generate number 0
+STORE 4 # copied from 0 to 4
+SUB 0 #generate number 27
+INC
+ADD 0
+INC
+ADD 0
+ADD 0
+INC
+ADD 0
+INC
+STORE 5 # copied from 0 to 5
+SUB 0
+ADD 4
+STOREI 5 #store into memory potega
+SUB 0 #generate number 24
+INC
+ADD 0
+INC
+ADD 0
+ADD 0
+ADD 0
+STORE 5 # copied from 0 to 5
+LOADI 5 #load from memory n
+STORE 5 # copied from 0 to 5
+SUB 0 #generate number 28
+INC
+ADD 0
+INC
+ADD 0
+INC
+ADD 0
+ADD 0
+STORE 6 # copied from 0 to 6
+LOADI 6 #load from memory dzielnik
+STORE 6 # copied from 0 to 6
+SUB 0
+STORE 3
+STORE 4
+STORE 7
+STORE 8
+STORE 9
+STORE 17
+LOAD 6
+JZERO 646 # dzielenie przez 0
+LOAD 5
+JPOS 519
+LOAD 7
+INC
+STORE 7
+LOAD 6
+JPOS 524
+LOAD 7
+INC
+STORE 7
+LOAD 7
+JZERO 581 #jump to normal
+DEC
+JZERO 540 #jump to handling mixed
+SUB 0
+INC
+STORE 17
+LOAD 5
+SUB 5
+SUB 5
+STORE 5
+LOAD 6
+SUB 6
+SUB 6
+STORE 6
+JUMP 581 #JUMP TO NORMAL DIV
+LOAD 5 # mixed start
+STORE 4
+JPOS 562 # 30 to second negative
+LOAD 5
+ADD 6
+STORE 5
+LOAD 3
+INC
+STORE 3
+LOAD 5
+SUB 5
+SUB 5
+STORE 4
+STORE 17
+LOAD 5
+JPOS 557 #to flip
+JUMP 543
+LOAD 3
+SUB 3
+SUB 3
+STORE 3
+JUMP 646 # 49 mixed end
+LOAD 5 #50 second negative
+ADD 6
+STORE 5
+LOAD 3
+INC
+STORE 3
+LOAD 5
+SUB 5
+SUB 5
+STORE 4
+STORE 17
+LOAD 5
+JNEG 576 #to flip
+JUMP 563
+LOAD 3 #flip
+SUB 3
+SUB 3
+STORE 3
+JUMP 646 # 68 mixed end
+LOAD 5 #normal div
+STORE 4
+LOAD 6
+JZERO 644 # dzielenie przez 0
+LOAD 6
+STORE 8
+LOAD 8
+STORE 3
+LOAD 3
+SUB 4
+STORE 3
+LOAD 3
+JNEG 596
+JZERO 596
+JUMP 600
+LOAD 8
+ADD 8
+STORE 8
+JUMP 587
+SUB 0
+STORE 3
+LOAD 8
+STORE 9
+LOAD 9
+SUB 4
+STORE 9
+LOAD 9
+JZERO 620
+JNEG 620
+LOAD 3
+ADD 3
+STORE 3
+SUB 0
+DEC
+STORE 13
+LOAD 8
+SHIFT 13
+STORE 8
+JUMP 635
+LOAD 3
+ADD 3
+STORE 3
+LOAD 3
+INC
+STORE 3
+LOAD 4
+SUB 8
+STORE 4
+SUB 0
+DEC
+STORE 13
+LOAD 8
+SHIFT 13
+STORE 8
+LOAD 6
+STORE 9
+LOAD 9
+SUB 8
+STORE 9
+LOAD 9
+JZERO 602
+JNEG 602
+JUMP 647
+SUB 0
+LOAD 4
+LOAD 3 #division end
+LOAD 17
+JZERO 653
+LOAD 4
+SUB 4
+SUB 4
+STORE 4
+SUB 0 #generate number 26
+INC
+ADD 0
+INC
+ADD 0
+ADD 0
+INC
+ADD 0
+STORE 5 # copied from 0 to 5
+SUB 0
+ADD 4
+STOREI 5 #store into memory reszta
+SUB 0 #generate number 0
+STORE 4 # copied from 0 to 4
+SUB 0 #generate number 26
+INC
+ADD 0
+INC
+ADD 0
+ADD 0
+INC
+ADD 0
+STORE 3 # copied from 0 to 3
+LOADI 3 #load from memory reszta
+STORE 3 # copied from 0 to 3
+LOAD 4 # equals
+SUB 3
+JZERO 682
+JUMP 1080
+LOAD 3
+SUB 4
+JZERO 686 # end for not equals
+JUMP 1080 # end equals
+SUB 0 #generate number 24
+INC
+ADD 0
+INC
+ADD 0
+ADD 0
+ADD 0
+STORE 5 # copied from 0 to 5
+LOADI 5 #load from memory n
+STORE 5 # copied from 0 to 5
+SUB 0 #generate number 28
+INC
+ADD 0
+INC
+ADD 0
+INC
+ADD 0
+ADD 0
+STORE 6 # copied from 0 to 6
+LOADI 6 #load from memory dzielnik
+STORE 6 # copied from 0 to 6
+SUB 0
+STORE 3
+STORE 4
+STORE 7
+STORE 8
+STORE 9
+STORE 17
+LOAD 6
+JZERO 848 # dzielenie przez 0
+LOAD 5
+JPOS 721
+LOAD 7
+INC
+STORE 7
+LOAD 6
+JPOS 726
+LOAD 7
+INC
+STORE 7
+LOAD 7
+JZERO 783 #jump to normal
+DEC
+JZERO 742 #jump to handling mixed
+SUB 0
+INC
+STORE 17
+LOAD 5
+SUB 5
+SUB 5
+STORE 5
+LOAD 6
+SUB 6
+SUB 6
+STORE 6
+JUMP 783 #JUMP TO NORMAL DIV
+LOAD 5 # mixed start
+STORE 4
+JPOS 764 # 30 to second negative
+LOAD 5
+ADD 6
+STORE 5
+LOAD 3
+INC
+STORE 3
+LOAD 5
+SUB 5
+SUB 5
+STORE 4
+STORE 17
+LOAD 5
+JPOS 759 #to flip
+JUMP 745
+LOAD 3
+SUB 3
+SUB 3
+STORE 3
+JUMP 848 # 49 mixed end
+LOAD 5 #50 second negative
+ADD 6
+STORE 5
+LOAD 3
+INC
+STORE 3
+LOAD 5
+SUB 5
+SUB 5
+STORE 4
+STORE 17
+LOAD 5
+JNEG 778 #to flip
+JUMP 765
+LOAD 3 #flip
+SUB 3
+SUB 3
+STORE 3
+JUMP 848 # 68 mixed end
+LOAD 5 #normal div
+STORE 4
+LOAD 6
+JZERO 846 # dzielenie przez 0
+LOAD 6
+STORE 8
+LOAD 8
+STORE 3
+LOAD 3
+SUB 4
+STORE 3
+LOAD 3
+JNEG 798
+JZERO 798
+JUMP 802
+LOAD 8
+ADD 8
+STORE 8
+JUMP 789
+SUB 0
+STORE 3
+LOAD 8
+STORE 9
+LOAD 9
+SUB 4
+STORE 9
+LOAD 9
+JZERO 822
+JNEG 822
+LOAD 3
+ADD 3
+STORE 3
+SUB 0
+DEC
+STORE 13
+LOAD 8
+SHIFT 13
+STORE 8
+JUMP 837
+LOAD 3
+ADD 3
+STORE 3
+LOAD 3
+INC
+STORE 3
+LOAD 4
+SUB 8
+STORE 4
+SUB 0
+DEC
+STORE 13
+LOAD 8
+SHIFT 13
+STORE 8
+LOAD 6
+STORE 9
+LOAD 9
+SUB 8
+STORE 9
+LOAD 9
+JZERO 804
+JNEG 804
+JUMP 849
+SUB 0
+LOAD 4
+LOAD 3 #division end
+LOAD 17
+JZERO 855
+LOAD 4
+SUB 4
+SUB 4
+STORE 4
+SUB 0 #generate number 24
+INC
+ADD 0
+INC
+ADD 0
+ADD 0
+ADD 0
+STORE 5 # copied from 0 to 5
+SUB 0
+ADD 3
+STOREI 5 #store into memory n
+SUB 0 #generate number 1
+INC
+STORE 6 # copied from 0 to 6
+SUB 0 #generate number 27
+INC
+ADD 0
+INC
+ADD 0
+ADD 0
+INC
+ADD 0
+INC
+STORE 5 # copied from 0 to 5
+LOADI 5 #load from memory potega
+STORE 5 # copied from 0 to 5# started adding
+SUB 0
+ADD 5
+ADD 6
+STORE 9 # copied from 0 to 9
+SUB 0 #generate number 27
+INC
+ADD 0
+INC
+ADD 0
+ADD 0
+INC
+ADD 0
+INC
+STORE 5 # copied from 0 to 5
+SUB 0
+ADD 9
+STOREI 5 #store into memory potega
+SUB 0 #generate number 24
+INC
+ADD 0
+INC
+ADD 0
+ADD 0
+ADD 0
+STORE 5 # copied from 0 to 5
+LOADI 5 #load from memory n
+STORE 5 # copied from 0 to 5
+SUB 0 #generate number 28
+INC
+ADD 0
+INC
+ADD 0
+INC
+ADD 0
+ADD 0
+STORE 6 # copied from 0 to 6
+LOADI 6 #load from memory dzielnik
+STORE 6 # copied from 0 to 6
+SUB 0
+STORE 3
+STORE 4
+STORE 7
+STORE 8
+STORE 9
+STORE 17
+LOAD 6
+JZERO 1060 # dzielenie przez 0
+LOAD 5
+JPOS 933
+LOAD 7
+INC
+STORE 7
+LOAD 6
+JPOS 938
+LOAD 7
+INC
+STORE 7
+LOAD 7
+JZERO 995 #jump to normal
+DEC
+JZERO 954 #jump to handling mixed
+SUB 0
+INC
+STORE 17
+LOAD 5
+SUB 5
+SUB 5
+STORE 5
+LOAD 6
+SUB 6
+SUB 6
+STORE 6
+JUMP 995 #JUMP TO NORMAL DIV
+LOAD 5 # mixed start
+STORE 4
+JPOS 976 # 30 to second negative
+LOAD 5
+ADD 6
+STORE 5
+LOAD 3
+INC
+STORE 3
+LOAD 5
+SUB 5
+SUB 5
+STORE 4
+STORE 17
+LOAD 5
+JPOS 971 #to flip
+JUMP 957
+LOAD 3
+SUB 3
+SUB 3
+STORE 3
+JUMP 1060 # 49 mixed end
+LOAD 5 #50 second negative
+ADD 6
+STORE 5
+LOAD 3
+INC
+STORE 3
+LOAD 5
+SUB 5
+SUB 5
+STORE 4
+STORE 17
+LOAD 5
+JNEG 990 #to flip
+JUMP 977
+LOAD 3 #flip
+SUB 3
+SUB 3
+STORE 3
+JUMP 1060 # 68 mixed end
+LOAD 5 #normal div
+STORE 4
+LOAD 6
+JZERO 1058 # dzielenie przez 0
+LOAD 6
+STORE 8
+LOAD 8
+STORE 3
+LOAD 3
+SUB 4
+STORE 3
+LOAD 3
+JNEG 1010
+JZERO 1010
+JUMP 1014
+LOAD 8
+ADD 8
+STORE 8
+JUMP 1001
+SUB 0
+STORE 3
+LOAD 8
+STORE 9
+LOAD 9
+SUB 4
+STORE 9
+LOAD 9
+JZERO 1034
+JNEG 1034
+LOAD 3
+ADD 3
+STORE 3
+SUB 0
+DEC
+STORE 13
+LOAD 8
+SHIFT 13
+STORE 8
+JUMP 1049
+LOAD 3
+ADD 3
+STORE 3
+LOAD 3
+INC
+STORE 3
+LOAD 4
+SUB 8
+STORE 4
+SUB 0
+DEC
+STORE 13
+LOAD 8
+SHIFT 13
+STORE 8
+LOAD 6
+STORE 9
+LOAD 9
+SUB 8
+STORE 9
+LOAD 9
+JZERO 1016
+JNEG 1016
+JUMP 1061
+SUB 0
+LOAD 4
+LOAD 3 #division end
+LOAD 17
+JZERO 1067
+LOAD 4
+SUB 4
+SUB 4
+STORE 4
+SUB 0 #generate number 26
+INC
+ADD 0
+INC
+ADD 0
+ADD 0
+INC
+ADD 0
+STORE 5 # copied from 0 to 5
+SUB 0
+ADD 4
+STOREI 5 #store into memory reszta
+JUMP 665 #jump to condition
+SUB 0 #generate number 0
+STORE 4 # copied from 0 to 4
+SUB 0 #generate number 27
+INC
+ADD 0
+INC
+ADD 0
+ADD 0
+INC
+ADD 0
+INC
+STORE 3 # copied from 0 to 3
+LOADI 3 #load from memory potega
+STORE 3 # copied from 0 to 3
+LOAD 4 #condition begining 
+SUB 3
+JNEG 1098
+JUMP 1120 #condtion end
+SUB 0 #generate number 28
+INC
+ADD 0
+INC
+ADD 0
+INC
+ADD 0
+ADD 0
+LOADI 0 #load from memory dzielnik
+PUT
+SUB 0 #generate number 27
+INC
+ADD 0
+INC
+ADD 0
+ADD 0
+INC
+ADD 0
+INC
+LOADI 0 #load from memory potega
+PUT
+JUMP 1212
+SUB 0 #generate number 1
+INC
+STORE 6 # copied from 0 to 6
+SUB 0 #generate number 28
+INC
+ADD 0
+INC
+ADD 0
+INC
+ADD 0
+ADD 0
+STORE 5 # copied from 0 to 5
+LOADI 5 #load from memory dzielnik
+STORE 5 # copied from 0 to 5# started adding
+SUB 0
+ADD 5
+ADD 6
+STORE 9 # copied from 0 to 9
+SUB 0 #generate number 28
+INC
+ADD 0
+INC
+ADD 0
+INC
+ADD 0
+ADD 0
+STORE 5 # copied from 0 to 5
+SUB 0
+ADD 9
+STOREI 5 #store into memory dzielnik
+SUB 0 #generate number 28
+INC
+ADD 0
+INC
+ADD 0
+INC
+ADD 0
+ADD 0
+STORE 5 # copied from 0 to 5
+LOADI 5 #load from memory dzielnik
+STORE 5 # copied from 0 to 5
+SUB 0 #generate number 28
+INC
+ADD 0
+INC
+ADD 0
+INC
+ADD 0
+ADD 0
+STORE 6 # copied from 0 to 6
+LOADI 6 #load from memory dzielnik
+STORE 6 # copied from 0 to 6
+SUB 0
+STORE 11
+STORE 12
+DEC
+STORE 2
+INC
+INC
+STORE 3
+SUB 0
+ADD 6
+STORE 5 # copied from 6 to 5
+LOAD 5 #multiplication start
+JZERO 1200
+SHIFT 2
+SHIFT 3
+SUB 5
+JZERO 1193
+LOAD 6
+SHIFT 12
+ADD 11
+STORE 11
+LOAD 12
+INC
+STORE 12
+LOAD 5
+SHIFT 2
+STORE 5
+JUMP 1183
+SUB 0 #generate number 25
+INC
+ADD 0
+INC
+ADD 0
+ADD 0
+ADD 0
+INC
+STORE 5 # copied from 0 to 5
+SUB 0
+ADD 11
+STOREI 5 #store into memory m
+JUMP 443 #jump to condition
+SUB 0 #generate number 1
+INC
+STORE 4 # copied from 0 to 4
+SUB 0 #generate number 24
+INC
+ADD 0
+INC
+ADD 0
+ADD 0
+ADD 0
+STORE 3 # copied from 0 to 3
+LOADI 3 #load from memory n
+STORE 3 # copied from 0 to 3
+LOAD 4 # equals
+SUB 3
+JZERO 1230
+JUMP 1233
+LOAD 3
+SUB 4
+JZERO 1245 # end for not equals
+SUB 0 #generate number 24
+INC
+ADD 0
+INC
+ADD 0
+ADD 0
+ADD 0
+LOADI 0 #load from memory n
+PUT
+SUB 0 #generate number 1
+INC
+PUT
+HALT

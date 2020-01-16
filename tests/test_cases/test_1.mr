@@ -1,0 +1,919 @@
+GET
+STORE 2 # copied from 0 to 2
+SUB 0 #generate number 20
+INC
+ADD 0
+ADD 0
+INC
+ADD 0
+ADD 0
+STORE 5 # copied from 0 to 5
+SUB 0
+ADD 2
+STOREI 5 #store into memory a
+GET
+STORE 2 # copied from 0 to 2
+SUB 0 #generate number 21
+INC
+ADD 0
+ADD 0
+INC
+ADD 0
+ADD 0
+INC
+STORE 5 # copied from 0 to 5
+SUB 0
+ADD 2
+STOREI 5 #store into memory b
+GET
+STORE 2 # copied from 0 to 2
+SUB 0 #generate number 22
+INC
+ADD 0
+ADD 0
+INC
+ADD 0
+INC
+ADD 0
+STORE 5 # copied from 0 to 5
+SUB 0
+ADD 2
+STOREI 5 #store into memory c
+GET
+STORE 2 # copied from 0 to 2
+SUB 0 #generate number 23
+INC
+ADD 0
+ADD 0
+INC
+ADD 0
+INC
+ADD 0
+INC
+STORE 5 # copied from 0 to 5
+SUB 0
+ADD 2
+STOREI 5 #store into memory d
+GET
+STORE 2 # copied from 0 to 2
+SUB 0 #generate number 24
+INC
+ADD 0
+INC
+ADD 0
+ADD 0
+ADD 0
+STORE 5 # copied from 0 to 5
+SUB 0
+ADD 2
+STOREI 5 #store into memory e
+GET
+STORE 2 # copied from 0 to 2
+SUB 0 #generate number 25
+INC
+ADD 0
+INC
+ADD 0
+ADD 0
+ADD 0
+INC
+STORE 5 # copied from 0 to 5
+SUB 0
+ADD 2
+STOREI 5 #store into memory f
+GET
+STORE 2 # copied from 0 to 2
+SUB 0 #generate number 26
+INC
+ADD 0
+INC
+ADD 0
+ADD 0
+INC
+ADD 0
+STORE 5 # copied from 0 to 5
+SUB 0
+ADD 2
+STOREI 5 #store into memory g
+GET
+STORE 2 # copied from 0 to 2
+SUB 0 #generate number 27
+INC
+ADD 0
+INC
+ADD 0
+ADD 0
+INC
+ADD 0
+INC
+STORE 5 # copied from 0 to 5
+SUB 0
+ADD 2
+STOREI 5 #store into memory h
+SUB 0 #generate number 0
+STORE 4 # copied from 0 to 4
+SUB 0 #generate number 28
+INC
+ADD 0
+INC
+ADD 0
+INC
+ADD 0
+ADD 0
+STORE 5 # copied from 0 to 5
+SUB 0
+ADD 4
+STOREI 5 #store into memory x
+SUB 0 #generate number 1
+INC
+STORE 4 # copied from 0 to 4
+SUB 0 #generate number 29
+INC
+ADD 0
+INC
+ADD 0
+INC
+ADD 0
+ADD 0
+INC
+STORE 5 # copied from 0 to 5
+SUB 0
+ADD 4
+STOREI 5 #store into memory i
+SUB 0 #generate number 20
+INC
+ADD 0
+ADD 0
+INC
+ADD 0
+ADD 0
+STORE 4 # copied from 0 to 4
+LOADI 4 #load from memory a
+STORE 4 # copied from 0 to 4
+SUB 0 #generate number 30
+INC
+ADD 0
+INC
+ADD 0
+INC
+ADD 0
+INC
+ADD 0
+STORE 5 # copied from 0 to 5
+SUB 0
+ADD 4
+STOREI 5 #store into memory i_end0
+SUB 0 #generate number 29
+INC
+ADD 0
+INC
+ADD 0
+INC
+ADD 0
+ADD 0
+INC
+STORE 3 # copied from 0 to 3
+LOADI 3 #load from memory i
+STORE 3 # copied from 0 to 3
+SUB 0 #generate number 30
+INC
+ADD 0
+INC
+ADD 0
+INC
+ADD 0
+INC
+ADD 0
+STORE 4 # copied from 0 to 4
+LOADI 4 #load from memory i_end0
+STORE 4 # copied from 0 to 4
+LOAD 3 #condition begining 
+SUB 4
+JNEG 194
+JZERO 194
+JUMP 918 #condtion end
+SUB 0 #generate number -1
+DEC
+STORE 4 # copied from 0 to 4
+SUB 0 #generate number 31
+INC
+ADD 0
+INC
+ADD 0
+INC
+ADD 0
+INC
+ADD 0
+INC
+STORE 5 # copied from 0 to 5
+SUB 0
+ADD 4
+STOREI 5 #store into memory j
+SUB 0 #generate number 21
+INC
+ADD 0
+ADD 0
+INC
+ADD 0
+ADD 0
+INC
+STORE 4 # copied from 0 to 4
+LOADI 4 #load from memory b
+STORE 4 # copied from 0 to 4
+SUB 0 #generate number 32
+INC
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+STORE 5 # copied from 0 to 5
+SUB 0
+ADD 4
+STOREI 5 #store into memory j_end0
+SUB 0 #generate number 31
+INC
+ADD 0
+INC
+ADD 0
+INC
+ADD 0
+INC
+ADD 0
+INC
+STORE 3 # copied from 0 to 3
+LOADI 3 #load from memory j
+STORE 3 # copied from 0 to 3
+SUB 0 #generate number 32
+INC
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+STORE 4 # copied from 0 to 4
+LOADI 4 #load from memory j_end0
+STORE 4 # copied from 0 to 4
+LOAD 4 #condition begining 
+SUB 3
+JNEG 261
+JZERO 261
+JUMP 892 #condtion end
+SUB 0 #generate number 1
+INC
+STORE 4 # copied from 0 to 4
+SUB 0 #generate number 33
+INC
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+INC
+STORE 5 # copied from 0 to 5
+SUB 0
+ADD 4
+STOREI 5 #store into memory k
+SUB 0 #generate number 22
+INC
+ADD 0
+ADD 0
+INC
+ADD 0
+INC
+ADD 0
+STORE 4 # copied from 0 to 4
+LOADI 4 #load from memory c
+STORE 4 # copied from 0 to 4
+SUB 0 #generate number 34
+INC
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+INC
+ADD 0
+STORE 5 # copied from 0 to 5
+SUB 0
+ADD 4
+STOREI 5 #store into memory k_end0
+SUB 0 #generate number 33
+INC
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+INC
+STORE 3 # copied from 0 to 3
+LOADI 3 #load from memory k
+STORE 3 # copied from 0 to 3
+SUB 0 #generate number 34
+INC
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+INC
+ADD 0
+STORE 4 # copied from 0 to 4
+LOADI 4 #load from memory k_end0
+STORE 4 # copied from 0 to 4
+LOAD 3 #condition begining 
+SUB 4
+JNEG 326
+JZERO 326
+JUMP 863 #condtion end
+SUB 0 #generate number -1
+DEC
+STORE 4 # copied from 0 to 4
+SUB 0 #generate number 35
+INC
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+INC
+ADD 0
+INC
+STORE 5 # copied from 0 to 5
+SUB 0
+ADD 4
+STOREI 5 #store into memory l
+SUB 0 #generate number 23
+INC
+ADD 0
+ADD 0
+INC
+ADD 0
+INC
+ADD 0
+INC
+STORE 4 # copied from 0 to 4
+LOADI 4 #load from memory d
+STORE 4 # copied from 0 to 4
+SUB 0 #generate number 36
+INC
+ADD 0
+ADD 0
+ADD 0
+INC
+ADD 0
+ADD 0
+STORE 5 # copied from 0 to 5
+SUB 0
+ADD 4
+STOREI 5 #store into memory l_end0
+SUB 0 #generate number 35
+INC
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+INC
+ADD 0
+INC
+STORE 3 # copied from 0 to 3
+LOADI 3 #load from memory l
+STORE 3 # copied from 0 to 3
+SUB 0 #generate number 36
+INC
+ADD 0
+ADD 0
+ADD 0
+INC
+ADD 0
+ADD 0
+STORE 4 # copied from 0 to 4
+LOADI 4 #load from memory l_end0
+STORE 4 # copied from 0 to 4
+LOAD 4 #condition begining 
+SUB 3
+JNEG 394
+JZERO 394
+JUMP 839 #condtion end
+SUB 0 #generate number 1
+INC
+STORE 4 # copied from 0 to 4
+SUB 0 #generate number 37
+INC
+ADD 0
+ADD 0
+ADD 0
+INC
+ADD 0
+ADD 0
+INC
+STORE 5 # copied from 0 to 5
+SUB 0
+ADD 4
+STOREI 5 #store into memory m
+SUB 0 #generate number 24
+INC
+ADD 0
+INC
+ADD 0
+ADD 0
+ADD 0
+STORE 4 # copied from 0 to 4
+LOADI 4 #load from memory e
+STORE 4 # copied from 0 to 4
+SUB 0 #generate number 38
+INC
+ADD 0
+ADD 0
+ADD 0
+INC
+ADD 0
+INC
+ADD 0
+STORE 5 # copied from 0 to 5
+SUB 0
+ADD 4
+STOREI 5 #store into memory m_end0
+SUB 0 #generate number 37
+INC
+ADD 0
+ADD 0
+ADD 0
+INC
+ADD 0
+ADD 0
+INC
+STORE 3 # copied from 0 to 3
+LOADI 3 #load from memory m
+STORE 3 # copied from 0 to 3
+SUB 0 #generate number 38
+INC
+ADD 0
+ADD 0
+ADD 0
+INC
+ADD 0
+INC
+ADD 0
+STORE 4 # copied from 0 to 4
+LOADI 4 #load from memory m_end0
+STORE 4 # copied from 0 to 4
+LOAD 3 #condition begining 
+SUB 4
+JNEG 462
+JZERO 462
+JUMP 812 #condtion end
+SUB 0 #generate number -1
+DEC
+STORE 4 # copied from 0 to 4
+SUB 0 #generate number 39
+INC
+ADD 0
+ADD 0
+ADD 0
+INC
+ADD 0
+INC
+ADD 0
+INC
+STORE 5 # copied from 0 to 5
+SUB 0
+ADD 4
+STOREI 5 #store into memory n
+SUB 0 #generate number 25
+INC
+ADD 0
+INC
+ADD 0
+ADD 0
+ADD 0
+INC
+STORE 4 # copied from 0 to 4
+LOADI 4 #load from memory f
+STORE 4 # copied from 0 to 4
+SUB 0 #generate number 40
+INC
+ADD 0
+ADD 0
+INC
+ADD 0
+ADD 0
+ADD 0
+STORE 5 # copied from 0 to 5
+SUB 0
+ADD 4
+STOREI 5 #store into memory n_end0
+SUB 0 #generate number 39
+INC
+ADD 0
+ADD 0
+ADD 0
+INC
+ADD 0
+INC
+ADD 0
+INC
+STORE 3 # copied from 0 to 3
+LOADI 3 #load from memory n
+STORE 3 # copied from 0 to 3
+SUB 0 #generate number 40
+INC
+ADD 0
+ADD 0
+INC
+ADD 0
+ADD 0
+ADD 0
+STORE 4 # copied from 0 to 4
+LOADI 4 #load from memory n_end0
+STORE 4 # copied from 0 to 4
+LOAD 4 #condition begining 
+SUB 3
+JNEG 531
+JZERO 531
+JUMP 786 #condtion end
+SUB 0 #generate number 1
+INC
+STORE 4 # copied from 0 to 4
+SUB 0 #generate number 41
+INC
+ADD 0
+ADD 0
+INC
+ADD 0
+ADD 0
+ADD 0
+INC
+STORE 5 # copied from 0 to 5
+SUB 0
+ADD 4
+STOREI 5 #store into memory o
+SUB 0 #generate number 26
+INC
+ADD 0
+INC
+ADD 0
+ADD 0
+INC
+ADD 0
+STORE 4 # copied from 0 to 4
+LOADI 4 #load from memory g
+STORE 4 # copied from 0 to 4
+SUB 0 #generate number 42
+INC
+ADD 0
+ADD 0
+INC
+ADD 0
+ADD 0
+INC
+ADD 0
+STORE 5 # copied from 0 to 5
+SUB 0
+ADD 4
+STOREI 5 #store into memory o_end0
+SUB 0 #generate number 41
+INC
+ADD 0
+ADD 0
+INC
+ADD 0
+ADD 0
+ADD 0
+INC
+STORE 3 # copied from 0 to 3
+LOADI 3 #load from memory o
+STORE 3 # copied from 0 to 3
+SUB 0 #generate number 42
+INC
+ADD 0
+ADD 0
+INC
+ADD 0
+ADD 0
+INC
+ADD 0
+STORE 4 # copied from 0 to 4
+LOADI 4 #load from memory o_end0
+STORE 4 # copied from 0 to 4
+LOAD 3 #condition begining 
+SUB 4
+JNEG 600
+JZERO 600
+JUMP 757 #condtion end
+SUB 0 #generate number -1
+DEC
+STORE 4 # copied from 0 to 4
+SUB 0 #generate number 43
+INC
+ADD 0
+ADD 0
+INC
+ADD 0
+ADD 0
+INC
+ADD 0
+INC
+STORE 5 # copied from 0 to 5
+SUB 0
+ADD 4
+STOREI 5 #store into memory p
+SUB 0 #generate number 27
+INC
+ADD 0
+INC
+ADD 0
+ADD 0
+INC
+ADD 0
+INC
+STORE 4 # copied from 0 to 4
+LOADI 4 #load from memory h
+STORE 4 # copied from 0 to 4
+SUB 0 #generate number 44
+INC
+ADD 0
+ADD 0
+INC
+ADD 0
+INC
+ADD 0
+ADD 0
+STORE 5 # copied from 0 to 5
+SUB 0
+ADD 4
+STOREI 5 #store into memory p_end0
+SUB 0 #generate number 43
+INC
+ADD 0
+ADD 0
+INC
+ADD 0
+ADD 0
+INC
+ADD 0
+INC
+STORE 3 # copied from 0 to 3
+LOADI 3 #load from memory p
+STORE 3 # copied from 0 to 3
+SUB 0 #generate number 44
+INC
+ADD 0
+ADD 0
+INC
+ADD 0
+INC
+ADD 0
+ADD 0
+STORE 4 # copied from 0 to 4
+LOADI 4 #load from memory p_end0
+STORE 4 # copied from 0 to 4
+LOAD 4 #condition begining 
+SUB 3
+JNEG 672
+JZERO 672
+JUMP 731 #condtion end
+SUB 0 #generate number 1
+INC
+STORE 6 # copied from 0 to 6
+SUB 0 #generate number 28
+INC
+ADD 0
+INC
+ADD 0
+INC
+ADD 0
+ADD 0
+STORE 5 # copied from 0 to 5
+LOADI 5 #load from memory x
+STORE 5 # copied from 0 to 5# started adding
+SUB 0
+ADD 5
+ADD 6
+STORE 9 # copied from 0 to 9
+SUB 0 #generate number 28
+INC
+ADD 0
+INC
+ADD 0
+INC
+ADD 0
+ADD 0
+STORE 5 # copied from 0 to 5
+SUB 0
+ADD 9
+STOREI 5 #store into memory x
+SUB 0 #generate number 43
+INC
+ADD 0
+ADD 0
+INC
+ADD 0
+ADD 0
+INC
+ADD 0
+INC
+LOADI 0 #load from memory p
+JZERO 731
+DEC # decrement iterator
+STORE 9 # copied from 0 to 9
+SUB 0 #generate number 43
+INC
+ADD 0
+ADD 0
+INC
+ADD 0
+ADD 0
+INC
+ADD 0
+INC
+STORE 5 # copied from 0 to 5
+SUB 0
+ADD 9
+STOREI 5 #store into memory p
+JUMP 642 #jump to condition
+SUB 0 #generate number 41
+INC
+ADD 0
+ADD 0
+INC
+ADD 0
+ADD 0
+ADD 0
+INC
+LOADI 0 #load from memory o
+INC # increment iterator
+STORE 9 # copied from 0 to 9
+SUB 0 #generate number 41
+INC
+ADD 0
+ADD 0
+INC
+ADD 0
+ADD 0
+ADD 0
+INC
+STORE 5 # copied from 0 to 5
+SUB 0
+ADD 9
+STOREI 5 #store into memory o
+JUMP 571 #jump to condition
+SUB 0 #generate number 39
+INC
+ADD 0
+ADD 0
+ADD 0
+INC
+ADD 0
+INC
+ADD 0
+INC
+LOADI 0 #load from memory n
+JZERO 786
+DEC # decrement iterator
+STORE 9 # copied from 0 to 9
+SUB 0 #generate number 39
+INC
+ADD 0
+ADD 0
+ADD 0
+INC
+ADD 0
+INC
+ADD 0
+INC
+STORE 5 # copied from 0 to 5
+SUB 0
+ADD 9
+STOREI 5 #store into memory n
+JUMP 502 #jump to condition
+SUB 0 #generate number 37
+INC
+ADD 0
+ADD 0
+ADD 0
+INC
+ADD 0
+ADD 0
+INC
+LOADI 0 #load from memory m
+INC # increment iterator
+STORE 9 # copied from 0 to 9
+SUB 0 #generate number 37
+INC
+ADD 0
+ADD 0
+ADD 0
+INC
+ADD 0
+ADD 0
+INC
+STORE 5 # copied from 0 to 5
+SUB 0
+ADD 9
+STOREI 5 #store into memory m
+JUMP 433 #jump to condition
+SUB 0 #generate number 35
+INC
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+INC
+ADD 0
+INC
+LOADI 0 #load from memory l
+JZERO 839
+DEC # decrement iterator
+STORE 9 # copied from 0 to 9
+SUB 0 #generate number 35
+INC
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+INC
+ADD 0
+INC
+STORE 5 # copied from 0 to 5
+SUB 0
+ADD 9
+STOREI 5 #store into memory l
+JUMP 366 #jump to condition
+SUB 0 #generate number 33
+INC
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+INC
+LOADI 0 #load from memory k
+INC # increment iterator
+STORE 9 # copied from 0 to 9
+SUB 0 #generate number 33
+INC
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+ADD 0
+INC
+STORE 5 # copied from 0 to 5
+SUB 0
+ADD 9
+STOREI 5 #store into memory k
+JUMP 299 #jump to condition
+SUB 0 #generate number 31
+INC
+ADD 0
+INC
+ADD 0
+INC
+ADD 0
+INC
+ADD 0
+INC
+LOADI 0 #load from memory j
+JZERO 892
+DEC # decrement iterator
+STORE 9 # copied from 0 to 9
+SUB 0 #generate number 31
+INC
+ADD 0
+INC
+ADD 0
+INC
+ADD 0
+INC
+ADD 0
+INC
+STORE 5 # copied from 0 to 5
+SUB 0
+ADD 9
+STOREI 5 #store into memory j
+JUMP 233 #jump to condition
+SUB 0 #generate number 29
+INC
+ADD 0
+INC
+ADD 0
+INC
+ADD 0
+ADD 0
+INC
+LOADI 0 #load from memory i
+INC # increment iterator
+STORE 9 # copied from 0 to 9
+SUB 0 #generate number 29
+INC
+ADD 0
+INC
+ADD 0
+INC
+ADD 0
+ADD 0
+INC
+STORE 5 # copied from 0 to 5
+SUB 0
+ADD 9
+STOREI 5 #store into memory i
+JUMP 165 #jump to condition
+HALT

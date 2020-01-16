@@ -141,9 +141,9 @@ class CTestFile(unittest.TestCase):
         with open("na_zaliczenie/program0.mr", "w+") as file:
             file.write(code)
 
-        result = get_output_from("na_zaliczenie/program0.mr", "1345601")
+        result = get_output_from("na_zaliczenie/program0.mr", "8")
 
-        self.assertEqual("1\n0\n0\n0\n0\n0\n1\n0\n0\n0\n0\n1\n0\n0\n0\n1\n0\n0\n1\n0\n1", result)
+        self.assertEqual("0\n0\n0\n1", result)
 
     def test_program2(self):
         data = read_file_content(os.path.join(os.path.dirname(__file__), "na_zaliczenie/program1.imp"))

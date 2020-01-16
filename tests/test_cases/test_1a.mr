@@ -1,0 +1,237 @@
+GET
+STORE 2 # copied from 0 to 2
+SUB 0 #generate number 21
+INC
+ADD 0
+ADD 0
+INC
+ADD 0
+ADD 0
+INC
+STORE 5 # copied from 0 to 5
+SUB 0
+ADD 2
+STOREI 5 #store into memory k
+SUB 0 #generate number 0
+STORE 4 # copied from 0 to 4
+SUB 0 #generate number 22
+INC
+ADD 0
+ADD 0
+INC
+ADD 0
+INC
+ADD 0
+STORE 5 # copied from 0 to 5
+SUB 0
+ADD 4
+STOREI 5 #store into memory i
+SUB 0 #generate number 21
+INC
+ADD 0
+ADD 0
+INC
+ADD 0
+ADD 0
+INC
+STORE 4 # copied from 0 to 4
+LOADI 4 #load from memory k
+STORE 4 # copied from 0 to 4
+SUB 0 #generate number 23
+INC
+ADD 0
+ADD 0
+INC
+ADD 0
+INC
+ADD 0
+INC
+STORE 5 # copied from 0 to 5
+SUB 0
+ADD 4
+STOREI 5 #store into memory i_end0
+SUB 0 #generate number 22
+INC
+ADD 0
+ADD 0
+INC
+ADD 0
+INC
+ADD 0
+STORE 3 # copied from 0 to 3
+LOADI 3 #load from memory i
+STORE 3 # copied from 0 to 3
+SUB 0 #generate number 23
+INC
+ADD 0
+ADD 0
+INC
+ADD 0
+INC
+ADD 0
+INC
+STORE 4 # copied from 0 to 4
+LOADI 4 #load from memory i_end0
+STORE 4 # copied from 0 to 4
+LOAD 3 #condition begining 
+SUB 4
+JNEG 80
+JZERO 80
+JUMP 208 #condtion end
+SUB 0 #generate number 1
+INC
+STORE 4 # copied from 0 to 4
+SUB 0 #generate number 22
+INC
+ADD 0
+ADD 0
+INC
+ADD 0
+INC
+ADD 0
+STORE 3 # copied from 0 to 3
+LOADI 3 #load from memory i
+STORE 3 # copied from 0 to 3
+LOAD 4 # equals
+SUB 3
+JZERO 98
+JUMP 116
+LOAD 3
+SUB 4
+JZERO 102 # end for not equals
+JUMP 116 # end equals
+SUB 0 #generate number 1
+INC
+STORE 4 # copied from 0 to 4
+SUB 0 #generate number 20
+INC
+ADD 0
+ADD 0
+INC
+ADD 0
+ADD 0
+STORE 5 # copied from 0 to 5
+SUB 0
+ADD 4
+STOREI 5 #store into memory j
+SUB 0 #generate number 1
+INC
+STORE 4 # copied from 0 to 4
+SUB 0 #generate number 22
+INC
+ADD 0
+ADD 0
+INC
+ADD 0
+INC
+ADD 0
+STORE 3 # copied from 0 to 3
+LOADI 3 #load from memory i
+STORE 3 # copied from 0 to 3
+LOAD 4 #condition begining 
+SUB 3
+JNEG 134
+JUMP 184 #condtion end
+SUB 0 #generate number 2
+INC
+ADD 0
+STORE 6 # copied from 0 to 6
+SUB 0 #generate number 20
+INC
+ADD 0
+ADD 0
+INC
+ADD 0
+ADD 0
+STORE 5 # copied from 0 to 5
+LOADI 5 #load from memory j
+STORE 5 # copied from 0 to 5
+SUB 0
+STORE 11
+STORE 12
+DEC
+STORE 2
+INC
+INC
+STORE 3
+LOAD 5 #multiplication start
+JZERO 173
+SHIFT 2
+SHIFT 3
+SUB 5
+JZERO 166
+LOAD 6
+SHIFT 12
+ADD 11
+STORE 11
+LOAD 12
+INC
+STORE 12
+LOAD 5
+SHIFT 2
+STORE 5
+JUMP 156
+SUB 0 #generate number 20
+INC
+ADD 0
+ADD 0
+INC
+ADD 0
+ADD 0
+STORE 5 # copied from 0 to 5
+SUB 0
+ADD 11
+STOREI 5 #store into memory j
+SUB 0 #generate number 22
+INC
+ADD 0
+ADD 0
+INC
+ADD 0
+INC
+ADD 0
+LOADI 0 #load from memory i
+INC # increment iterator
+STORE 9 # copied from 0 to 9
+SUB 0 #generate number 22
+INC
+ADD 0
+ADD 0
+INC
+ADD 0
+INC
+ADD 0
+STORE 5 # copied from 0 to 5
+SUB 0
+ADD 9
+STOREI 5 #store into memory i
+JUMP 52 #jump to condition
+SUB 0 #generate number 1
+INC
+STORE 4 # copied from 0 to 4
+SUB 0 #generate number 21
+INC
+ADD 0
+ADD 0
+INC
+ADD 0
+ADD 0
+INC
+STORE 3 # copied from 0 to 3
+LOADI 3 #load from memory k
+STORE 3 # copied from 0 to 3
+LOAD 4 #condition begining 
+SUB 3
+JNEG 227
+JZERO 227
+JUMP 236 #condtion end
+SUB 0 #generate number 20
+INC
+ADD 0
+ADD 0
+INC
+ADD 0
+ADD 0
+LOADI 0 #load from memory j
+PUT
+HALT

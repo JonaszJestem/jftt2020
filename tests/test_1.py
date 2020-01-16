@@ -420,6 +420,66 @@ class CTestFile(unittest.TestCase):
 
         self.assertEqual("", result)
 
+    def test_1(self):
+        data = read_file_content(os.path.join(os.path.dirname(__file__), "test_cases/test_1.in"))
+        code = self.parse(data)
+        with open("test_cases/test_1.mr", "w+") as file:
+            file.write(code)
+
+        result = get_output_from("test_cases/test_1.mr", "20")
+
+        self.assertEqual("", result)
+
+    def test_1a(self):
+        data = read_file_content(os.path.join(os.path.dirname(__file__), "test_cases/test_1a.in"))
+        code = self.parse(data)
+        with open("test_cases/test_1a.mr", "w+") as file:
+            file.write(code)
+
+        result = get_output_from("test_cases/test_1a.mr", "20")
+
+        self.assertEqual("524288", result)
+
+    def test_1b(self):
+        data = read_file_content(os.path.join(os.path.dirname(__file__), "test_cases/test_1b.in"))
+        code = self.parse(data)
+        with open("test_cases/test_1b.mr", "w+") as file:
+            file.write(code)
+
+        result = get_output_from("test_cases/test_1b.mr", "20")
+
+        self.assertEqual("Uninitialized j", result)
+
+    def test_1c(self):
+        data = read_file_content(os.path.join(os.path.dirname(__file__), "test_cases/test_1c.in"))
+        code = self.parse(data)
+        with open("test_cases/test_1c.mr", "w+") as file:
+            file.write(code)
+
+        result = get_output_from("test_cases/test_1c.mr", "20")
+
+        self.assertEqual("524288", result)
+
+    def test_1d(self):
+        data = read_file_content(os.path.join(os.path.dirname(__file__), "test_cases/test_1d.in"))
+        code = self.parse(data)
+        with open("test_cases/test_1d.mr", "w+") as file:
+            file.write(code)
+
+        result = get_output_from("test_cases/test_1d.mr", "20")
+
+        self.assertEqual("524288", result)
+
+    def test_2(self):
+        data = read_file_content(os.path.join(os.path.dirname(__file__), "test_cases/test_2.in"))
+        code = self.parse(data)
+        with open("test_cases/test_2.mr", "w+") as file:
+            file.write(code)
+
+        result = get_output_from("test_cases/test_2.mr", "340282367713220089251654026161790386200")
+
+        self.assertEqual("524288", result)
+
     def test_divide(self):
         data = "DECLARE	tab(0:5) BEGIN	" \
                "tab(4) ASSIGN 11;	" \
@@ -456,7 +516,7 @@ class CTestFile(unittest.TestCase):
 
 def get_output_from(mr_code, input_string=""):
     input_bytes = str(input_string).encode()
-    mr = os.path.join(os.path.dirname(__file__), "../maszyna-wirtualna/maszyna-wirtualna-cln")
+    mr = os.path.join(os.path.dirname(__file__), "../maszyna-wirtualna/maszyna-wirtualna")
     test_output = run([mr, mr_code], stdout=PIPE, input=input_bytes)
     lines = test_output.stdout.decode().split("\n")[3:-2]
     print(test_output.stdout.decode())
