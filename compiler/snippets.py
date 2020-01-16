@@ -182,10 +182,113 @@ def divide(variable_x, variable_y, program, modulo=False):
     [program.code.append(command) for command in clear]
     program.line_no += len(clear)
 
+    div = [
+        f'LOAD {y}',
+        f'JZERO {program.line_no + 134} # dzielenie przez 0',
+        f'LOAD {x}',
+        f'JPOS {program.line_no + 7}',
+        f'LOAD {sign_helper}',
+        f'INC',
+        f'STORE {sign_helper}',
+        f'LOAD {y}',#7
+        f'JPOS {program.line_no + 12}',
+        f'LOAD {sign_helper}',
+        f'INC',
+        f'STORE {sign_helper}',
+        f'LOAD {sign_helper}', #12
+        f'JZERO {program.line_no + 69} #jump to normal',
+        f'DEC',  # 14
+        f'JZERO {program.line_no + 28} #jump to handling mixed',
+        f'SUB 0',  # handle all negative, set flag
+        f'INC',
+        f'STORE 17',
+        f'LOAD {x}',
+        f'SUB {x}',
+        f'SUB {x}',
+        f'STORE {x}',
+        f'LOAD {y}',
+        f'SUB {y}',
+        f'SUB {y}',
+        f'STORE {y}',
+        f'JUMP {program.line_no + 69} #JUMP TO NORMAL DIV', # 27 -
+        # mixed
+        f'LOAD {x} # mixed start', #28
+        f'STORE {reszta}',
+        f'JPOS {program.line_no + 50} # 30 to second negative',
+        f'LOAD {x}', # 31
+        f'ADD {y}',
+        f'STORE {x}',
+        f'LOAD {iloraz}',
+        f'INC',
+        f'STORE {iloraz}',
+        f'LOAD {x}',
+        f'SUB {x}',
+        f'SUB {x}',
+        f'STORE {reszta}', #40
+        f'STORE 17',
+        f'LOAD {x}',
+        f'JPOS {program.line_no + 45} #to flip',
+        f'JUMP {program.line_no + 31}',#44
+        f'LOAD {iloraz}',
+        f'SUB {iloraz}',
+        f'SUB {iloraz}',
+        f'STORE {iloraz}',
+        f'JUMP {program.line_no + 42 + 73 + 19} # 49 mixed end',  # to end
+
+        f'LOAD {x} #50 second negative',
+        f'ADD {y}',
+        f'STORE {x}',
+        f'LOAD {iloraz}',
+        f'INC',
+        f'STORE {iloraz}',
+        f'LOAD {x}',
+        f'SUB {x}',
+        f'SUB {x}',
+        f'STORE {reszta}',
+        f'STORE 17', #60
+        f'LOAD {x}',
+        f'JNEG {program.line_no + 44 + 20} #to flip',
+        f'JUMP {program.line_no + 30 + 21}',
+        f'LOAD {iloraz} #flip',
+        f'SUB {iloraz}',
+        f'SUB {iloraz}',
+        f'STORE {iloraz}',
+        f'JUMP {program.line_no + 134} # 68 mixed end',  # to end
+    ]#69
+    [program.code.append(command) for command in div]
+    program.line_no += len(div)
+    #
+    # # mixed
+    # f'LOAD {x}',  # 35
+    # f'JNEG {program.line_no + 46}',  # 36 do poczatekdzielenia
+    # f'LOAD {x}',  # 37
+    # f'STORE {reszta}',
+    # f'ADD {y}',
+    # f'STORE {x}',
+    # f'JNEG {program.line_no + 60} # jump to end',
+    # f'LOAD {iloraz}',
+    # f'DEC',
+    # f'STORE {iloraz}',
+    # f'JUMP {program.line_no + 37} # koniec dzeielenia',  # 45 do poczatek dzielenia
+    #
+    # f'LOAD {x}',  # 46 poczatek dzielenia
+    # f'STORE {reszta}',
+    # f'ADD {y}',
+    # f'STORE {x}',
+    # f'JPOS {program.line_no + 55} # jump to end',
+    # f'LOAD {iloraz}',
+    # f'DEC',
+    # f'STORE {iloraz}',
+    # f'JUMP {program.line_no + 46} #54 koniec dzeielenia',  # do poczatek dzielenia
+    # f'LOAD {iloraz}',
+    # f'DEC',
+    # f'STORE {iloraz}',
+    # f'LOAD {x}',
+    # f'STORE {reszta}',  # 59
 
     out_code = [
         # f'COPY {reszta} {x} #division',
-        f'LOAD {x}',
+        f'LOAD {x} #normal div',
         f'STORE {reszta}',
 
         # f'JZERO {y} {program.line_no + 24} #zero_divison',
@@ -301,6 +404,13 @@ def divide(variable_x, variable_y, program, modulo=False):
         f'SUB 0',  # 63
         f'LOAD {reszta}',
         f'LOAD {iloraz} #division end',
+
+        f'LOAD 17',
+        f'JZERO {program.line_no + 72}',
+        f'LOAD {reszta}',
+        f'SUB {reszta}',
+        f'SUB {reszta}',
+        f'STORE {reszta}',
     ]
 
     [program.code.append(command) for command in out_code]

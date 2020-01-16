@@ -298,7 +298,7 @@ class CTestFile(unittest.TestCase):
 
         result = get_output_from("test_cases/test_division_2.mr", "20")
 
-        self.assertEqual("", result)
+        self.assertEqual("559650", result)
 
     def test_division_5(self):
         data = read_file_content(os.path.join(os.path.dirname(__file__), "test_cases/test_division_5.in"))
