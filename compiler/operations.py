@@ -1,7 +1,7 @@
 import logging
 
-from .variables import Number
-from .snippets import add, bin_pow, decrement, divide, equals, greater_than, increment, less_or_equal, \
+from variables import Number
+from snippets import add, bin_pow, decrement, divide, equals, greater_than, increment, less_or_equal, \
     multiply, sub, divide_by_2, mod_by_2
 
 

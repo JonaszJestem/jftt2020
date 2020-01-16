@@ -35,7 +35,7 @@ class CTestFile(unittest.TestCase):
         with open("na_zaliczenie/1-numbers.mr", "w+") as file:
             file.write(code)
 
-        result = get_output_from("na_zaliczenie/1-numbers.mr", "5")
+        result = get_output_from("na_zaliczenie/1-numbers.mr", "20")
         # print(result)
         self.assertEqual("0\n1\n-2\n10\n-100\n10000\n-1234567890\n20\n15\n-999\n-555555555\n7777\n-999\n11\n707\n7777",
                          result)
@@ -141,9 +141,9 @@ class CTestFile(unittest.TestCase):
         with open("na_zaliczenie/program0.mr", "w+") as file:
             file.write(code)
 
-        result = get_output_from("na_zaliczenie/program0.mr", "8")
+        result = get_output_from("na_zaliczenie/program0.mr", "1345601")
 
-        self.assertEqual("0\n0\n0\n1", result)
+        self.assertEqual("1\n0\n0\n0\n0\n0\n1\n0\n0\n0\n0\n1\n0\n0\n0\n1\n0\n0\n1\n0\n1", result)
 
     def test_program2(self):
         data = read_file_content(os.path.join(os.path.dirname(__file__), "na_zaliczenie/program1.imp"))

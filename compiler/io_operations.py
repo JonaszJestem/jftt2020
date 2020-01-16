@@ -1,6 +1,6 @@
 import logging
 
-from .variables import Number, copy_value
+from variables import Number, copy_value
 
 
 

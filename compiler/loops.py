@@ -1,9 +1,9 @@
 import logging
 
-from .variables import Value, Number
-from .identifiers import Identifier, Pidentifier
-from .jump_fillers import JumpFiller, ForDownToLoopJumpFiller, ForLoopJumpFiller, LoopJumpFiller
-from .operations import AssignmentOperations, ConditionOperations
+from variables import Value, Number
+from identifiers import Identifier, Pidentifier
+from jump_fillers import JumpFiller, ForDownToLoopJumpFiller, ForLoopJumpFiller, LoopJumpFiller
+from operations import AssignmentOperations, ConditionOperations
 
 
 

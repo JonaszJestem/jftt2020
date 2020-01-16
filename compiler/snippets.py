@@ -1,6 +1,6 @@
 import logging
 
-from .variables import Variable, copy_value
+from variables import Variable, copy_value
 
 
 def less_or_equal(variable_x, variable_y, program, swap=False):

@@ -1,7 +1,7 @@
 import logging
 
-from .exceptions import UndeclaredVariable
-from .variables import ArrayCell
+from exceptions import UndeclaredVariable
+from variables import ArrayCell
 
 
 class JFTTProgram:

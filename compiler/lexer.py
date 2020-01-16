@@ -1,4 +1,4 @@
-from .exceptions import SyntaxError
+from exceptions import SyntaxError
 
 from sly import Lexer
 

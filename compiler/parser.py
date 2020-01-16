@@ -2,21 +2,20 @@ import re
 
 from sly import Parser
 
-from .analysis_help import VariableTrace
-from .conditionals import IfThenConditional, IfThenElseConditional
-from .exceptions import SyntaxError, ArrayWrongDeclaration, ArrrayOutOfBound, DoubledDeclarationVariable, \
+from variable_tracer import VariableTrace
+from conditionals import IfThenConditional, IfThenElseConditional
+from exceptions import SyntaxError, ArrayWrongDeclaration, ArrrayOutOfBound, DoubledDeclarationVariable, \
     IteratorManipulation, UndeclaredVariable, VariableNotInitialized
-from .identifiers import Identifier, ArrayIdentifier, Variable
-from .io_operations import Read, Write
-from .lexer import JFTTLexer
-from .loops import DoWhileLoop, ForDownToLoop, ForLoop, WhileLoop
-from .operations import AssignmentOperations, ConditionOperations, Number, ArithemticOperations
-from .program import JFTTProgram
-from .variables import ArrayVariable, Value
+from identifiers import Identifier, ArrayIdentifier, Variable
+from io_operations import Read, Write
+from lexer import JFTTLexer
+from loops import DoWhileLoop, ForDownToLoop, ForLoop, WhileLoop
+from operations import AssignmentOperations, ConditionOperations, Number, ArithemticOperations
+from program import JFTTProgram
+from variables import ArrayVariable, Value
 
 
 class JFTTParser(Parser):
-    debugfile = 'parser.out'
 
     tokens = JFTTLexer.tokens
 

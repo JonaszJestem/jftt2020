@@ -1,6 +1,6 @@
 import logging
 
-from .variables import Variable
+from variables import Variable
 
 
 

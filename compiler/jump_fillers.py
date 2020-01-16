@@ -1,6 +1,6 @@
 import logging
 
-from compiler.variables import copy_value
+from variables import copy_value
 
 
 

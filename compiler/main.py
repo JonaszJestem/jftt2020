@@ -1,5 +1,5 @@
-from .parser import JFTTParser
-from .lexer import JFTTLexer
+from parser import JFTTParser
+from lexer import JFTTLexer
 import sys
 
 
@@ -14,9 +14,10 @@ def parse(code):
     return result
 
 
-if __name__ == "__main__":
-    file_name = sys.argv[1]
+file_name = sys.argv[1]
+output = sys.argv[2]
 
-    with open('workfile') as f:
-        code = f.read()
-        print(parse(code))
+with open(file_name) as f:
+    code = f.read()
+    with open(output, 'w+') as out:
+        out.write(parse(code))
