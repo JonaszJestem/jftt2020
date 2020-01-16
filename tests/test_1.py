@@ -470,6 +470,7 @@ class CTestFile(unittest.TestCase):
 
         self.assertEqual("524288", result)
 
+    @unittest.skip("Too slow")
     def test_2(self):
         data = read_file_content(os.path.join(os.path.dirname(__file__), "test_cases/test_2.in"))
         code = self.parse(data)
@@ -477,6 +478,25 @@ class CTestFile(unittest.TestCase):
             file.write(code)
 
         result = get_output_from("test_cases/test_2.mr", "340282367713220089251654026161790386200")
+        #
+        #     2
+        # > 3
+        # > 3
+        # > 1
+        # > 5
+        # > 2
+        # > 7
+        # > 1
+        # > 13
+        # > 1
+        # > 41
+        # > 1
+        # > 61
+        # > 1
+        # > 641
+        # > 1
+        # > 1321
+        # > 1
 
         self.assertEqual("524288", result)
 
@@ -516,7 +536,7 @@ class CTestFile(unittest.TestCase):
 
 def get_output_from(mr_code, input_string=""):
     input_bytes = str(input_string).encode()
-    mr = os.path.join(os.path.dirname(__file__), "../maszyna-wirtualna/maszyna-wirtualna")
+    mr = os.path.join(os.path.dirname(__file__), "../maszyna-wirtualna/maszyna-wirtualna-cln")
     test_output = run([mr, mr_code], stdout=PIPE, input=input_bytes)
     lines = test_output.stdout.decode().split("\n")[3:-2]
     print(test_output.stdout.decode())
