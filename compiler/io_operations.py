@@ -5,7 +5,6 @@ from .variables import Number, copy_value
 
 
 
-# DONE
 class Write:
     def __init__(self, value):
         self.value = value
@@ -24,7 +23,6 @@ class Write:
         return ()
 
 
-# DONE
 class Read:
     def __init__(self, identifier):
         self.identifier = identifier

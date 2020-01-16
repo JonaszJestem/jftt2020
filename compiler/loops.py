@@ -8,7 +8,6 @@ from .operations import AssignmentOperations, ConditionOperations
 
 
 
-# DONE
 class WhileLoop:
     def __init__(self, condition, do_commands):
         self.condition = condition
@@ -30,7 +29,6 @@ class WhileLoop:
         return self.condition.get_variable_names()
 
 
-# DONE
 class DoWhileLoop(WhileLoop):
 
     def generate_code(self, program):
@@ -39,7 +37,6 @@ class DoWhileLoop(WhileLoop):
         [program.stack.append(do_command) for do_command in self.do_commands]
 
 
-# DONE
 class ForLoop:
     def __init__(self, i, startValue, endValue, commands):
         self.i = i
@@ -94,7 +91,6 @@ class ForLoop:
         return tuple(result)
 
 
-# DONE
 class ForDownToLoop(ForLoop):
 
     def generate_code(self, program):

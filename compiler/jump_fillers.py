@@ -42,7 +42,6 @@ class ElseJumpFiller(JumpFiller):
         program.stack.append(condition_end)
 
 
-# DONE
 class LoopJumpFiller:
     """
     Class to end loops with proper jumps.

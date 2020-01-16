@@ -38,7 +38,6 @@ class AssignmentOperations:
         return tuple(result)
 
 
-# DONE
 class ConditionOperations:
     def __init__(self, op, left, right):
         self.op = op
@@ -95,7 +94,6 @@ class ConditionOperations:
         return tuple(result)
 
 
-# DONE
 class ArithemticOperations(ConditionOperations):
 
     def __init__(self, op, left, right):
